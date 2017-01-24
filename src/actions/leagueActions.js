@@ -1,5 +1,11 @@
 import * as apiCalls from './apiCalls';
 
+export function changeSelectedLeague(_id) {
+    return {
+        type : 'CHANGE_SELECTED_LEAGUE', _id
+    };
+}
+
 export function changeLeagueNameSuccess(league) {
     return { type: 'CHANGE_LEAGUE_NAME_SUCCESS', league };
 }

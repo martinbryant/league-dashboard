@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 import * as leagueActions from '../actions/leagueActions';
-import LeagueDropdown from './LeagueDropdown';
+// import LeagueDropdown from './LeagueDropdown';
 import TableView from './TableView';
 import FixtureView from './FixtureView';
 import ResultView from './ResultView';
@@ -43,9 +43,7 @@ class Layout extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <LeagueDropdown leagueNames={this.props.leagueDropdown} changeLeague={this.changeLeague} />
-                </div>
+                
                 <div>
                     <Grid>
                         <Row className="show-grid">
@@ -91,3 +89,7 @@ function mapDispatchToProps() {
 }
 
 export default connect(mapStateToProps)(Layout);
+
+// <div>
+//                     <LeagueDropdown leagueNames={this.props.leagueDropdown} changeLeague={this.changeLeague} />
+//                 </div>
