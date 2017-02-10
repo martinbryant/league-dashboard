@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 
 import LeagueDropdownRowComponent from './LeagueDropdownRowComponent';
 
-const LeagueDropDownComponent = ({leagues, onLeagueChange}) => (
-    <select onChange={onLeagueChange}>
+const LeagueDropDownComponent = ({selectedLeague, leagues, onLeagueChange}) => (
+    <select value={selectedLeague} onChange={onLeagueChange}>
         {leagues.map(league => {
             return (<LeagueDropdownRowComponent key={league._id}
                 {...league}
@@ -13,6 +13,7 @@ const LeagueDropDownComponent = ({leagues, onLeagueChange}) => (
 );
 
 LeagueDropDownComponent.propTypes = {
+    selectedLeague : PropTypes.string.isRequired,
     leagues: PropTypes.arrayOf(PropTypes.shape({
         _id: PropTypes.string.isRequired,
         leagueName: PropTypes.string.isRequired

@@ -5,9 +5,9 @@ import { browserHistory } from 'react-router';
 
 import * as leagueActions from '../actions/leagueActions';
 // import LeagueDropdown from './LeagueDropdown';
-import TableView from './TableView';
-import FixtureView from './FixtureView';
-import ResultView from './ResultView';
+// import TableView from './TableView';
+// import FixtureView from './FixtureView';
+// import ResultView from './ResultView';
 
 class Layout extends Component {
     constructor(props) {

@@ -6,6 +6,7 @@ import LeagueDropdownComponent from '../homepage/LeagueDropdownComponent';
 
 const mapStateToProps = (state) => {
     return {
+        selectedLeague : state.selectedLeague,
         leagues: state.leagues.map(league => {
             return {
                 leagueName : league.leagueName,
