@@ -1,23 +1,14 @@
 import React, { PropTypes } from 'react';
 import { Table } from 'react-bootstrap';
 
+import LeagueTableHeaderContainer from './LeagueTableHeaderContainer';
 import LeagueTableRowComponent from './LeagueTableRowComponent';
 
 const LeagueTableComponent = ({teams}) => {
     return (
         <Table striped bordered condensed hover>
             <thead>
-                <tr>
-                    <th>Team</th>
-                    <th>Played</th>
-                    <th>Won</th>
-                    <th>Drawn</th>
-                    <th>Lost</th>
-                    <th>Shots For </th>
-                    <th>Shots Against</th>
-                    <th>Difference</th>
-                    <th>Points</th>
-                </tr>
+                <LeagueTableHeaderContainer />
             </thead>
             <tbody>
                 {teams.map(team => {
@@ -38,6 +29,7 @@ LeagueTableComponent.propTypes = {
         lost: PropTypes.number.isRequired,
         shotsFor: PropTypes.number.isRequired,
         shotsAgainst: PropTypes.number.isRequired,
+        shotsDifference: PropTypes.number.isRequired,
         points: PropTypes.number.isRequired
     })).isRequired
 };

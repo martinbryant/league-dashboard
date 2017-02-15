@@ -10,10 +10,13 @@ import { loadLeagues } from './actions/leagueActions';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
 import leaguesJson from './leaguesJson';
+import tableColumns from './homepage/tableColumns';
 
 const initialState = {
+    leagues: leaguesJson,
+    tableColumns: tableColumns,
     selectedLeague : leaguesJson[0]._id,
-    leagues : leaguesJson
+    sortField : 'default'
 };
 const app = document.getElementById('app');
 const store = configureStore(initialState);

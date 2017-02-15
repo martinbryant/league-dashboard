@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const LeagueTableRowComponent = ({_id, teamName, played, won, drawn, lost, shotsFor, shotsAgainst, points }) => {
+const LeagueTableRowComponent = ({_id, teamName, played, won, drawn, lost, shotsFor, shotsAgainst, shotsDifference, points }) => {
     return (
         <tr>
             <td>{teamName}</td>
@@ -10,7 +10,7 @@ const LeagueTableRowComponent = ({_id, teamName, played, won, drawn, lost, shots
             <td>{lost}</td>
             <td>{shotsFor}</td>
             <td>{shotsAgainst}</td>
-            <td>{shotsFor - shotsAgainst}</td>
+            <td>{shotsDifference}</td>
             <td>{points}</td>
         </tr>
     );
@@ -25,6 +25,7 @@ LeagueTableRowComponent.propTypes = {
     lost: PropTypes.number.isRequired,
     shotsFor: PropTypes.number.isRequired,
     shotsAgainst: PropTypes.number.isRequired,
+    shotsDifference : PropTypes.number.isRequired,
     points: PropTypes.number.isRequired
 };
 
