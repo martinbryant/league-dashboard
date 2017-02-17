@@ -12,6 +12,6 @@ const constructColumns = (headingList, fieldsList) => {
     return newColumns;
 };
 
-const tableColumns = constructColumns(headings, fields);
+const columns = constructColumns(headings, fields);
 
-export default tableColumns;
+export default columns;

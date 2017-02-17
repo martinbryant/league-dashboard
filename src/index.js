@@ -15,8 +15,7 @@ import tableColumns from './homepage/tableColumns';
 const initialState = {
     leagues: leaguesJson,
     tableColumns: tableColumns,
-    selectedLeague : leaguesJson[0]._id,
-    sortField : 'default'
+    selectedLeague : leaguesJson[0]._id
 };
 const app = document.getElementById('app');
 const store = configureStore(initialState);
