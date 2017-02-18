@@ -1,18 +1,32 @@
 import React, { PropTypes } from 'react';
 
-const LeagueTableHeaderComponent = ({columns, onClick}) => {
+import { sortArrowUp, sortArrowDown } from '../constants';
+
+const LeagueTableHeaderComponent = ({tableColumns, sortOrder, sortColumn, onSortColumnChange, onSortOrderChange}) => {
     return (
         <tr>
-            {columns.map(column => {
-                return <th key={column.field} value={column.field} onClick={onClick}>{column.heading}</th>;
+            {tableColumns.map(column => {
+                return (<th
+                    key={column.field}
+                    value={column.field}
+                    onClick={(sortColumn != column.field) ? onSortColumnChange : ''}>{column.heading}
+                    {(sortColumn == column.field) ?
+                        <span style={{ float: 'right' }}
+                            value={sortOrder}
+                            className={(sortOrder == 'desc') ? sortArrowDown : sortArrowUp}
+                            onClick={onSortOrderChange}>
+                        </span> : ''}</th>);
             })}
         </tr>
     );
 };
 
 LeagueTableHeaderComponent.propTypes = {
-    columns: PropTypes.array.isRequired,
-    onClick: PropTypes.func.isRequired
+    tableColumns: PropTypes.array.isRequired,
+    sortOrder: PropTypes.string.isRequired,
+    sortColumn: PropTypes.string.isRequired,
+    onSortColumnChange: PropTypes.func.isRequired,
+    onSortOrderChange: PropTypes.func.isRequired
 };
 
 export default LeagueTableHeaderComponent;

@@ -12,9 +12,9 @@ const selectedLeague = (state = '', action) => {
     }
 };
 
-const sortField = (state = 'default', action) => {
+const sortColumn = (state = 'default', action) => {
     switch (action.type) {
-        case 'RE_ORDER_TABLE':
+        case 'SORT_TABLE_BY_COLUMN':
             return action.column;
         case 'CHANGE_SELECTED_LEAGUE':
             return 'default';
@@ -22,11 +22,20 @@ const sortField = (state = 'default', action) => {
     }
 };
 
+const sortOrder = (state = 'desc', action) => {
+    if (action.type === 'TOGGLE_SORT_ORDER') {
+        return action.order;
+    } else {
+        return state;
+    }
+};
+
 const homePage = combineReducers({
     leagues,
     tableColumns,
     selectedLeague,
-    sortField
+    sortColumn,
+    sortOrder
 });
 
 export default homePage;

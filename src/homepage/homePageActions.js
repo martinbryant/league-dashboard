@@ -1,11 +1,14 @@
-export function changeSelectedLeague(_id) {
-    return {
-        type : 'CHANGE_SELECTED_LEAGUE', _id
-    };
-}
+export const changeSelectedLeague = _id => ({
+    type: 'CHANGE_SELECTED_LEAGUE',
+    _id
+});
 
-export function reOrderTable(column) {
-    return {
-        type : 'RE_ORDER_TABLE', column
-    };
-}
+export const sortTableByColumn = column => ({
+    type: 'SORT_TABLE_BY_COLUMN',
+    column
+});
+
+export const toggleSortOrder = order => ({
+    type: 'TOGGLE_SORT_ORDER',
+    order
+});

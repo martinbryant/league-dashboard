@@ -5,9 +5,10 @@ import { changeSelectedLeague } from './homePageActions';
 import LeagueDropdownComponent from './LeagueDropdownComponent';
 
 const mapStateToProps = (state) => {
+    const {selectedLeague, leagues} = state;
     return {
-        selectedLeague : state.selectedLeague,
-        leagues: state.leagues.map(league => {
+        selectedLeague,
+        leagues: leagues.map(league => {
             return {
                 leagueName : league.leagueName,
                 _id : league._id

@@ -4,9 +4,10 @@ import { browserHistory } from 'react-router';
 import LeagueControlsComponent from '../homepage/LeagueControlsComponent';
 
 const mapStateToProps = (state) => {
+    const {leagues, selectedLeague} = state;
     return {
-        editLeagueDisabled: state.leagues.length < 1,
-        selectedLeague: state.selectedLeague
+        editLeagueDisabled: leagues.length < 1,
+        selectedLeague
     };
 };
 

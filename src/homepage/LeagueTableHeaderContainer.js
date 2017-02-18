@@ -1,19 +1,26 @@
 import { connect } from 'react-redux';
 
-import {reOrderTable} from './homePageActions';
+import { sortTableByColumn, toggleSortOrder } from './homePageActions';
 
 import LeagueTableHeaderComponent from './LeagueTableHeaderComponent';
 
 const mapStateToProps = (state) => {
+    const {tableColumns, sortOrder, sortColumn} = state;
     return {
-        columns: state.tableColumns
+        tableColumns,
+        sortOrder,
+        sortColumn
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onClick: (e) => {
-            dispatch(reOrderTable(e.target.value));
+        onSortColumnChange: (e) => {
+            dispatch(sortTableByColumn(e.target.value));
+        },
+        onSortOrderChange: (e) =>{
+            let order = (e.target.value == 'desc') ? 'asc' : 'desc';
+            dispatch(toggleSortOrder(order));
         }
     };
 };
