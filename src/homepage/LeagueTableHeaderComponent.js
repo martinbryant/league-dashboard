@@ -6,16 +6,16 @@ const LeagueTableHeaderComponent = ({tableColumns, sortOrder, sortColumn, onSort
     return (
         <tr>
             {tableColumns.map(column => {
-                return (<th
-                    key={column.field}
-                    value={column.field}
-                    onClick={(sortColumn != column.field) ? onSortColumnChange : ''}>{column.heading}
-                    {(sortColumn == column.field) ?
-                        <span style={{ float: 'right' }}
-                            value={sortOrder}
-                            className={(sortOrder == 'desc') ? sortArrowDown : sortArrowUp}
-                            onClick={onSortOrderChange}>
-                        </span> : ''}</th>);
+                return (
+                    <th key={column.field}
+                        value={column.field}
+                        onClick={(sortColumn != column.field) ? onSortColumnChange : ''}>{column.heading}
+                        {(sortColumn == column.field) ?
+                            <span style={{ float: 'right' }}
+                                value={sortOrder}
+                                className={(sortOrder == 'desc') ? sortArrowDown : sortArrowUp}
+                                onClick={onSortOrderChange}>
+                            </span> : ''}</th>);
             })}
         </tr>
     );

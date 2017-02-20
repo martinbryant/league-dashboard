@@ -44,15 +44,7 @@ class Layout extends Component {
         return (
             <div>
                 
-                <div>
-                    <Grid>
-                        <Row className="show-grid">
-                            <Col md={8}><TableView league={this.state.selectedLeague} addNewLeague={this.addNewLeague} editLeague={this.editLeague} /></Col>
-                            <Col md={4}><h4>Fixtures</h4><FixtureView fixtures={this.state.selectedLeague.fixtures} /><br />
-                                <h4>Results</h4><ResultView fixtures={this.state.selectedLeague.fixtures} /></Col>
-                        </Row>
-                    </Grid>
-                </div>
+                
 
             </div>
         );
@@ -92,4 +84,14 @@ export default connect(mapStateToProps)(Layout);
 
 // <div>
 //                     <LeagueDropdown leagueNames={this.props.leagueDropdown} changeLeague={this.changeLeague} />
+//                 </div>
+
+// <div>
+//                     <Grid>
+//                         <Row className="show-grid">
+//                             <Col md={8}><TableView league={this.state.selectedLeague} addNewLeague={this.addNewLeague} editLeague={this.editLeague} /></Col>
+//                             <Col md={4}><h4>Fixtures</h4><FixtureView fixtures={this.state.selectedLeague.fixtures} /><br />
+//                                 <h4>Results</h4><ResultView fixtures={this.state.selectedLeague.fixtures} /></Col>
+//                         </Row>
+//                     </Grid>
 //                 </div>
