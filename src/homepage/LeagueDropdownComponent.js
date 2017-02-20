@@ -4,11 +4,11 @@ import LeagueDropdownRowComponent from './LeagueDropdownRowComponent';
 
 const LeagueDropDownComponent = ({selectedLeague, leagues, onLeagueChange}) => (
     <select value={selectedLeague} onChange={onLeagueChange}>
-        {leagues.map(league => {
+        {(leagues) ? leagues.map(league => {
             return (<LeagueDropdownRowComponent key={league._id}
                 {...league}
                 />);
-        })}
+        }) : <option>No leagues to display</option>}
     </select>
 );
 
