@@ -23,10 +23,12 @@ const sortColumn = (state = 'default', action) => {
 };
 
 const sortOrder = (state = 'desc', action) => {
-    if (action.type === 'TOGGLE_SORT_ORDER') {
-        return action.order;
-    } else {
-        return state;
+    switch (action.type) {
+        case 'TOGGLE_SORT_ORDER':
+            return action.order;
+        case 'SORT_TABLE_BY_COLUMN':
+            return 'desc';
+        default: return state;
     }
 };
 
