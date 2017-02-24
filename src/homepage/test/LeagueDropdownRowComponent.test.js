@@ -4,17 +4,18 @@ import expect from 'expect';
 
 import LeagueDropdownRowComponent from '../LeagueDropdownRowComponent';
 
-const setup = (leagues, onLeagueChange) => {
-    const props = {
-        _id: 'id',
-        leagueName: 'name'
+const setup = (setupProps) => {
+    const {_id = '', leagueName = ''} = setupProps;
+    const defaultProps = {
+        _id,
+        leagueName
     };
-    return shallow(<LeagueDropdownRowComponent {...props} />);
+    return shallow(<LeagueDropdownRowComponent {...defaultProps} />);
 };
 
 describe('<LeagueDropdownRowComponent/>', () => {
     it('should render <option> element with a value attribute and text', () => {
-        const wrapper = setup();
+        const wrapper = setup({ _id: 'id', leagueName: 'name' });
         expect(wrapper.find('option').length).toBe(1);
         expect(wrapper.find('option').prop('value')).toEqual('id');
         expect(wrapper.find('option').text()).toEqual('name');
