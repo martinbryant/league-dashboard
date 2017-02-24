@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import expect from 'expect';
 
 import LeagueTableHeaderComponent from '../LeagueTableHeaderComponent';
-import TableSortIndicatorComponent from '../TableSortIndicatorComponent';
+import TableSortIndicatorContainer from '../TableSortIndicatorContainer';
 
 const mockTableColumns = [
     {
@@ -53,9 +53,9 @@ describe('<LeagueTableHeaderComponent/>', () => {
         wrapper.find('th').first().simulate('click');
         expect(spy).toNotHaveBeenCalled();
     });
-    it('renders a <TableSortIndicatorComponent/> with a value which equals field', () => {
+    it('renders a <TableSortIndicatorContainer/> with a value which equals field', () => {
         const wrapper = setup({});
-        expect(wrapper.find(TableSortIndicatorComponent).length).toBe(2);
-        expect(wrapper.find(TableSortIndicatorComponent).first().prop('sortField')).toBe('Field 1');
+        expect(wrapper.find(TableSortIndicatorContainer).length).toBe(2);
+        expect(wrapper.find(TableSortIndicatorContainer).first().prop('sortField')).toBe('Field 1');
     });
 });
