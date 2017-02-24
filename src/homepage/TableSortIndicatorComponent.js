@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { toggleSortOrder } from './homePageActions';
 import { sortArrowUp, sortArrowDown } from '../constants';
 
-const TableSortIndicatorComponent = ({sortField, sortOrder, sortColumn, onSortOrderChange}) => {
+const TableSortIndicatorComponent = ({ sortOrder, isSortIndicatorDisplayed, onSortOrderChange}) => {
     return (
-        (sortColumn == sortField) ?
+        (isSortIndicatorDisplayed) ?
             <span style={{ float: 'right' }}
                 value={sortOrder}
                 className={(sortOrder == 'desc') ? sortArrowDown : sortArrowUp}
@@ -17,9 +17,8 @@ const TableSortIndicatorComponent = ({sortField, sortOrder, sortColumn, onSortOr
 };
 
 TableSortIndicatorComponent.propTypes = {
-    sortField: PropTypes.string.isRequired,
     sortOrder: PropTypes.string.isRequired,
-    sortColumn: PropTypes.string.isRequired,
+    isSortIndicatorDisplayed : PropTypes.bool.isRequired,
     onSortOrderChange: PropTypes.func.isRequired
 };
 

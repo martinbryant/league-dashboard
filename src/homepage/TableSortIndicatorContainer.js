@@ -6,10 +6,10 @@ import TableSortIndicatorComponent from './TableSortIndicatorComponent';
 const mapStateToProps = (state, ownProps) => {
     const {sortOrder, sortColumn} = state;
     const {sortField} = ownProps;
+
     return {
         sortOrder,
-        sortColumn,
-        sortField
+        isSortIndicatorDisplayed : sortField == sortColumn
     };
 };
 
