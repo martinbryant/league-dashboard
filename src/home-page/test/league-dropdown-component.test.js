@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import expect from 'expect';
 
-import LeagueDropdownComponent from '../LeagueDropdownComponent';
+import LeagueDropdownComponent from '../league-dropdown-component';
 
 const mockLeagues = [{
     _id: 'a',

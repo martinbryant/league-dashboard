@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import FixtureListRowComponent from './FixtureListRowComponent';
+import FixtureListRowComponent from './fixture-list-row-component';
 
 const FixtureListComponent = ({fixtures}) => {
     return (

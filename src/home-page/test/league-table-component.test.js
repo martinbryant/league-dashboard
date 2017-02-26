@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import expect from 'expect';
 
-import LeagueTableComponent from '../LeagueTableComponent';
-import LeagueTableRowComponent from '../LeagueTableRowComponent';
+import LeagueTableComponent from '../league-table-component';
+import LeagueTableRowComponent from '../league-table-row-component';
 
 const setup = (setupProps) => {
     const {teams = []} = setupProps;

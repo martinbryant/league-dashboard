@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import expect from 'expect';
 
-import TableSortIndicatorComponent from '../TableSortIndicatorComponent';
+import TableSortIndicatorComponent from '../table-sort-indicator-component';
 import {sortArrowDown, sortArrowUp} from '../../constants';
 
 const setup = (setupProps) => {

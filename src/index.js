@@ -10,7 +10,7 @@ import { loadLeagues } from './actions/leagueActions';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
 import leaguesJson from './leaguesJson';
-import tableColumns from './homepage/tableColumns';
+import tableColumns from './home-page/table-columns';
 
 const initialState = {
     leagues: leaguesJson,

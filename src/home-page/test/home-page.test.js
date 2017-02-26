@@ -2,12 +2,12 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import expect from 'expect';
 
-import HomePage from '../HomePage';
-import LeagueDropdownContainer from '../LeagueDropdownContainer';
-import LeagueTableContainer from '../LeagueTableContainer';
-import FixtureListContainer from '../FixtureListContainer';
-import ResultListContainer from '../ResultListContainer';
-import LeagueControlsContainer from '../LeagueControlsContainer';
+import HomePage from '../home-page';
+import LeagueDropdownContainer from '../league-dropdown-container';
+import LeagueTableContainer from '../league-table-container';
+import FixtureListContainer from '../fixture-list-container';
+import ResultListContainer from '../result-list-container';
+import LeagueControlsContainer from '../league-controls-container';
 
 describe('<HomePage />', () => {
   it('should render <LeagueDropdownContainer />', () => {

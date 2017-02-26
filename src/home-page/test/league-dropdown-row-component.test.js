@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import expect from 'expect';
 
-import LeagueDropdownRowComponent from '../LeagueDropdownRowComponent';
+import LeagueDropdownRowComponent from '../league-dropdown-row-component';
 
 const setup = (setupProps) => {
     const {_id = '', leagueName = ''} = setupProps;

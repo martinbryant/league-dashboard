@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import HomePage from './homepage/HomePage';
+import HomePage from './home-page/home-page';
 import App from './App';
 import Layout from './components/Layout';
 import ManageLeague from './components/ManageLeague';

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { toggleSortOrder } from './homePageActions';
-import TableSortIndicatorComponent from './TableSortIndicatorComponent';
+import { toggleSortOrder } from './home-page-actions';
+import TableSortIndicatorComponent from './table-sort-indicator-component';
 
 const mapStateToProps = (state, ownProps) => {
     const {sortOrder, sortColumn} = state;

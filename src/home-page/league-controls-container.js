@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
-import LeagueControlsComponent from '../homepage/LeagueControlsComponent';
+import LeagueControlsComponent from './league-controls-component';
 
 const mapStateToProps = (state) => {
     const {leagues, selectedLeague} = state;

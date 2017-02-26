@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { orderBy } from 'lodash';
 
-import LeagueTableComponent from '../homepage/LeagueTableComponent';
+import LeagueTableComponent from './league-table-component';
 
 const findTeamsForSelectedLeague = (leagues, selectedLeague) =>
     leagues.find(league => league._id === selectedLeague).teams;

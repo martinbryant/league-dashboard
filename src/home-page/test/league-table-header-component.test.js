@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import expect from 'expect';
 
-import LeagueTableHeaderComponent from '../LeagueTableHeaderComponent';
-import TableSortIndicatorContainer from '../TableSortIndicatorContainer';
+import LeagueTableHeaderComponent from '../league-table-header-component';
+import TableSortIndicatorContainer from '../table-sort-indicator-container';
 
 const mockTableColumns = [
     {

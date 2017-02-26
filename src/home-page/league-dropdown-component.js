@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import LeagueDropdownRowComponent from './LeagueDropdownRowComponent';
+import LeagueDropdownRowComponent from './league-dropdown-row-component';
 
 const LeagueDropDownComponent = ({selectedLeague, leagues, onLeagueChange}) => (
     <select value={selectedLeague} onChange={onLeagueChange}>

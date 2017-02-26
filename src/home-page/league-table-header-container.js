@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
-import { sortTableByColumn, toggleSortOrder } from './homePageActions';
+import { sortTableByColumn, toggleSortOrder } from './home-page-actions';
 
-import LeagueTableHeaderComponent from './LeagueTableHeaderComponent';
+import LeagueTableHeaderComponent from './league-table-header-component';
 
 const mapStateToProps = (state) => {
     const {tableColumns, sortOrder, sortColumn} = state;

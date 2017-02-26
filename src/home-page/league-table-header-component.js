@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import TableSortIndicatorContainer from './TableSortIndicatorContainer';
+import TableSortIndicatorContainer from './table-sort-indicator-container';
 import { sortArrowUp, sortArrowDown } from '../constants';
 
 const LeagueTableHeaderComponent = ({tableColumns, sortColumn, onSortColumnChange}) => {

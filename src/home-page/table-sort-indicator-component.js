@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { toggleSortOrder } from './homePageActions';
 import { sortArrowUp, sortArrowDown } from '../constants';
 
 const TableSortIndicatorComponent = ({ sortOrder, isSortIndicatorDisplayed, onSortOrderChange}) => {

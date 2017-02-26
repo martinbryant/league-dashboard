@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import FixtureListComponent from './FixtureListComponent';
+import FixtureListComponent from './fixture-list-component';
 
 const mapStateToProps = (state) => {
     return {

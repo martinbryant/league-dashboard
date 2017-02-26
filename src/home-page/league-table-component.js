@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Table } from 'react-bootstrap';
 
-import LeagueTableHeaderContainer from './LeagueTableHeaderContainer';
-import LeagueTableRowComponent from './LeagueTableRowComponent';
+import LeagueTableHeaderContainer from './league-table-header-container';
+import LeagueTableRowComponent from './league-table-row-component';
 
 const LeagueTableComponent = ({teams}) => {
     return (

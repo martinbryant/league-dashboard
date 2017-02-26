@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import ResultListRowComponent from './ResultListRowComponent';
+import ResultListRowComponent from './result-list-row-component';
 
 const ResultListComponent = ({results}) => {
     return (

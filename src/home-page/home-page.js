@@ -1,11 +1,11 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 
-import LeagueDropdownContainer from '../homepage/LeagueDropdownContainer';
-import LeagueTableContainer from '../homepage/LeagueTableContainer';
-import FixtureListContainer from '../homepage/FixtureListContainer';
-import ResultListContainer from '../homepage/ResultListContainer';
-import LeagueControlsContainer from '../homepage/LeagueControlsContainer';
+import LeagueDropdownContainer from './league-dropdown-container';
+import LeagueTableContainer from './league-table-container';
+import FixtureListContainer from './fixture-list-container';
+import ResultListContainer from './result-list-container';
+import LeagueControlsContainer from './league-controls-container';
 
 const HomePage = () => {
     return (

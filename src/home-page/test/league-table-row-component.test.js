@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import expect from 'expect';
 
-import LeagueTableRowComponent from '../LeagueTableRowComponent';
+import LeagueTableRowComponent from '../league-table-row-component';
 
 const setup = (setupProps) => {
     return shallow(<LeagueTableRowComponent {...setupProps} />);

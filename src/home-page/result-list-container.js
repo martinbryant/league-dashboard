@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import ResultListComponent from '../homepage/ResultListComponent';
+import ResultListComponent from './result-list-component';
 
 const mapStateToProps = (state) => {
     return {
