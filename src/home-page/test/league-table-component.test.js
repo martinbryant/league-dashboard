@@ -42,16 +42,16 @@ const mockTeams = [
 
 describe('<LeagueTableComponent/>', () => {
     it('should render a <Table> and a <thead>', () => {
-        const wrapper = setup({});
+        const wrapper = setup({teams: [mockTeams[0]]});
         expect(wrapper.find('Table').length).toBe(1);
         expect(wrapper.find('thead').length).toBe(1);
     });
     it('should render a <tbody> with a <LeagueTableRowComponent>', () => {
-        const wrapper = setup({ teams: [{ _id: 'id' }] });
+        const wrapper = setup({ teams: [mockTeams[0]] });
         expect(wrapper.find('tbody').length).toBe(1);
         expect(wrapper.find('LeagueTableRowComponent').length).toBe(1);
     });
-    it('should render 2 <LeagueTableHeaderComponent>', () => {
+    it('should render 2 <LeagueTableRowComponent>', () => {
         const wrapper = setup({ teams: mockTeams });
         expect(wrapper.find('LeagueTableRowComponent').length).toBe(2);
     });

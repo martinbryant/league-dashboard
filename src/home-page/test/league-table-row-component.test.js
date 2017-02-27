@@ -23,7 +23,7 @@ const mockTeam = {
 
 describe('<LeagueDropdownRowComponent/>', () => {
     it('should render a <tr> and 9 <td>', () => {
-        const wrapper = setup({});
+        const wrapper = setup(mockTeam);
         expect(wrapper.find('tr').length).toBe(1);
         expect(wrapper.find('td').length).toBe(9);
     });

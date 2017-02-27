@@ -29,7 +29,7 @@ describe('home page reducer', () => {
     });
     it('should handle SORT_TABLE_BY_COLUMN', () => {
         const oldState = {
-            sortOrder: 'not desc'
+            sortOrder: 'asc'
         };
         const mockAction = {
             type: 'SORT_TABLE_BY_COLUMN',
@@ -44,10 +44,10 @@ describe('home page reducer', () => {
     it('should handle TOGGLE_SORT_ORDER', () => {
         const mockAction = {
             type: 'TOGGLE_SORT_ORDER',
-            order: 'order'
+            order: 'desc'
         };
         const newState = {
-            sortOrder: 'order'
+            sortOrder: 'asc'
         };
         expect(homePage(undefined, mockAction)).toInclude(newState);
     });
