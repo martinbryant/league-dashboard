@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
 
 import FixtureListComponent from './fixture-list-component';
+import { findFixturesForSelectedLeague } from './home-page-selectors';
 
 const mapStateToProps = (state) => {
+    const {leagues, selectedLeague} = state;
     return {
-        fixtures: state.leagues.find(league => league._id === state.selectedLeague).fixtures
-            .filter(fixture => !fixture.played)
+        fixtures: findFixturesForSelectedLeague(leagues, selectedLeague)
             .map(fixture => {
                 return {
-                    _id : fixture._id,
+                    _id: fixture._id,
                     homeTeamName: fixture.homeTeam.teamName,
                     awayTeamName: fixture.awayTeam.teamName
                 };

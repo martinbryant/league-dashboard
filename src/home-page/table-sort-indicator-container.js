@@ -16,8 +16,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onSortOrderChange: (e) => {
-            let order = (e.target.value == 'desc') ? 'asc' : 'desc';
-            dispatch(toggleSortOrder(order));
+            dispatch(toggleSortOrder(e.target.value));
         }
     };
 };
