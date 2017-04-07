@@ -4,7 +4,7 @@ import { changeSelectedLeague } from './home-page-actions';
 import LeagueDropdownComponent from './league-dropdown-component';
 
 export const mapStateToProps = (state) => {
-    const {selectedLeague, leagues} = state;
+    const {selectedLeague, leagues} = state.data;
     return {
         selectedLeague,
         leagues: leagues.map(league => {

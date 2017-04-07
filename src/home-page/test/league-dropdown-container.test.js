@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import { mapStateToProps} from '../league-dropdown-container';
+import { mapStateToProps } from '../league-dropdown-container';
 import { changeSelectedLeague } from '../home-page-actions';
 
 const mockLeagues = [
@@ -19,9 +19,10 @@ const mockLeagues = [
 ];
 
 const mockState = {
-    selectedLeague: 'this league',
-    leagues: mockLeagues,
-    sortOrder: ''
+    data: {
+        selectedLeague: 'this league',
+        leagues: mockLeagues
+    }
 };
 
 const expected = {

@@ -5,7 +5,7 @@ import { sortTableByColumn, toggleSortOrder } from './home-page-actions';
 import LeagueTableHeaderComponent from './league-table-header-component';
 
 const mapStateToProps = (state) => {
-    const {tableColumns, sortOrder, sortColumn} = state;
+    const {tableColumns, sortOrder, sortColumn} = state.ui;
     return {
         tableColumns,
         sortOrder,

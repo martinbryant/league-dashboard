@@ -5,7 +5,8 @@ import LeagueTableComponent from './league-table-component';
 import { findTeamsForSelectedLeague, sortTable } from './home-page-selectors';
 
 const mapStateToProps = (state) => {
-    const {leagues, selectedLeague, sortColumn, sortOrder} = state;
+    const {leagues, selectedLeague} = state.data;
+    const {sortColumn, sortOrder} = state.ui;
     return {
         teams: sortTable(findTeamsForSelectedLeague(leagues, selectedLeague), sortColumn, sortOrder)
     };

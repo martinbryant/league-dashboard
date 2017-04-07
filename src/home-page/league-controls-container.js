@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import LeagueControlsComponent from './league-controls-component';
 
 const mapStateToProps = (state) => {
-    const {leagues, selectedLeague} = state;
+    const {leagues, selectedLeague} = state.data;
     return {
         editLeagueDisabled: leagues.length < 1,
         selectedLeague

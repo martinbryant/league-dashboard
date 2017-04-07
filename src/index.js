@@ -13,10 +13,15 @@ import leaguesJson from './leaguesJson';
 import tableColumns from './home-page/table-columns';
 
 const initialState = {
-    leagues: leaguesJson,
-    tableColumns: tableColumns,
-    selectedLeague : leaguesJson[0]._id
+    data: {
+        leagues: leaguesJson,
+        selectedLeague: leaguesJson[0]._id
+    },
+    ui: {
+        tableColumns: tableColumns
+    }
 };
+
 const app = document.getElementById('app');
 const store = configureStore(initialState);
 

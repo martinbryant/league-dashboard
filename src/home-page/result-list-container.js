@@ -4,7 +4,7 @@ import ResultListComponent from './result-list-component';
 import { findResultsForSelectedLeague } from './home-page-selectors';
 
 const mapStateToProps = (state) => {
-    const {leagues, selectedLeague} = state;
+    const {leagues, selectedLeague} = state.data;
     return {
         results: findResultsForSelectedLeague(leagues, selectedLeague)
             .map(result => {
