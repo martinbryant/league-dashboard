@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import data from '../data-reducer2';
+import data from '../data-reducer';
 import {
     LOAD_ALL_LEAGUES_SUCCESS,
     EDIT_LEAGUE_NAME_SUCCESS,
@@ -14,7 +14,7 @@ import {
 
 
 
-describe('data reducer2 tests', () => {
+describe('data reducer tests', () => {
     const mockOldState = {
         leagues: [
             {
