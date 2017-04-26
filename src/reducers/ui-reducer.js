@@ -1,10 +1,16 @@
 import { combineReducers } from 'redux';
 
+import {
+    SORT_TABLE_BY_COLUMN,
+    CHANGE_SELECTED_LEAGUE,
+    TOGGLE_SORT_ORDER
+} from '../constants';
+
 const sortColumn = (state = 'default', action) => {
     switch (action.type) {
-        case 'SORT_TABLE_BY_COLUMN':
+        case SORT_TABLE_BY_COLUMN:
             return action.column;
-        case 'CHANGE_SELECTED_LEAGUE':
+        case CHANGE_SELECTED_LEAGUE:
             return 'default';
         default: return state;
     }
@@ -12,9 +18,9 @@ const sortColumn = (state = 'default', action) => {
 
 const sortOrder = (state = 'desc', action) => {
     switch (action.type) {
-        case 'TOGGLE_SORT_ORDER':
+        case TOGGLE_SORT_ORDER:
             return (action.order == 'desc') ? 'asc' : 'desc';
-        case 'SORT_TABLE_BY_COLUMN':
+        case SORT_TABLE_BY_COLUMN:
             return 'desc';
         default: return state;
     }
