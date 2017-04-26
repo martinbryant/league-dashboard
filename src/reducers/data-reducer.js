@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import {
+    LOAD_ALL_LEAGUES_SUCCESS,
     EDIT_LEAGUE_NAME_SUCCESS,
     ADD_LEAGUE_SUCCESS,
     DELETE_LEAGUE_SUCCESS,
@@ -12,17 +13,58 @@ import {
 
 const leagues = (state = [], action) => {
     switch (action.type) {
+        case LOAD_ALL_LEAGUES_SUCCESS:
+            return action.leagues.map(league => Object.assign({}, league, {
+                teams: league.teams.map(team => team._id),
+                fixtures: league.fixtures.map(fixture => fixture._id)
+            }));
         case EDIT_LEAGUE_NAME_SUCCESS:
-        case ADD_TEAM_SUCCESS:
-        case EDIT_TEAM_NAME_SUCCESS:
-        case DELETE_TEAM_SUCCESS:
-            return findLeagueAndEdit(state, action);
+            return state.map(league => (league._id === action._id) ? Object.assign({}, league, {
+                leagueName: action.leagueName
+            }) : league);
         case ADD_LEAGUE_SUCCESS:
             return [...state,
             action.league
             ];
+        case ADD_TEAM_SUCCESS:
+            return state.map(league => (league._id === action._id) ? Object.assign({}, league, {
+                teams : [
+                    ...league.teams,
+                    action.team._id
+                ]
+            }) : league);
         case DELETE_LEAGUE_SUCCESS:
             return state.filter(league => league._id !== action._id);
+        case DELETE_TEAM_SUCCESS:
+            return state.map(league => Object.assign({}, league, {
+                teams: league.teams.filter(team => team !== action._id)
+            }));
+        default: return state;
+    }
+};
+
+const teams = (state = [], action) => {
+    switch (action.type) {
+        case LOAD_ALL_LEAGUES_SUCCESS:
+            return extractField(action, 'teams');
+        case ADD_TEAM_SUCCESS:
+            return [...state,
+            action.team
+            ];
+        case EDIT_TEAM_NAME_SUCCESS:
+            return state.map(team => (team._id === action._id) ? Object.assign({}, team, {
+                teamName: action.teamName
+            }) : team);
+        case DELETE_TEAM_SUCCESS:
+            return state.filter(team => team._id !== action._id);
+        default: return state;
+    }
+};
+
+const fixtures = (state = [], action) => {
+    switch (action.type) {
+        case LOAD_ALL_LEAGUES_SUCCESS:
+            return extractField(action, 'fixtures');
         default: return state;
     }
 };
@@ -37,64 +79,17 @@ const selectedLeague = (state = '', action) => {
 
 const data = combineReducers({
     leagues,
+    teams,
+    fixtures,
     selectedLeague
 });
 
 export default data;
 
-const findLeagueAndEdit = (state, action) => {
-    return state.map(league => {
-        if (league._id === action.leagueId) {
-            switch (action.type) {
-                case ADD_TEAM_SUCCESS:
-                    return Object.assign({}, league, {
-                        teams: [
-                            ...league.teams, action.team
-                        ]
-                    });
-                case EDIT_LEAGUE_NAME_SUCCESS:
-                    return Object.assign({}, league, {
-                        leagueName: action.leagueName
-                    });
-                case EDIT_TEAM_NAME_SUCCESS:
-                    return Object.assign({}, league, {
-                        teams: league.teams.map(team => {
-                            if (team._id === action.team._id) {
-                                return action.team;
-                            }
-                            return team;
-                        })
-                    });
-                case DELETE_TEAM_SUCCESS:
-                    return Object.assign({}, league, {
-                        teams: league.teams.filter(team => team._id !== action.teamId)
-                    });
-                default: return state;
-            }
-        }
-        return league;
+const extractField = (action, field) => {
+    let array = [];
+    action.leagues.forEach(league => {
+        array = array.concat(league[field]);
     });
+    return array;
 };
-
-//Changed this reducer so each reducer handles own slice of state.
-//Had to specify leagues and tableColumns above or the initial state
-//when creating the store would not initialise the value correctly
-//meaning it would ignore both values
-
-// const homePage = (state = {}, action) => {
-//     switch (action.type) {
-//         case 'CHANGE_SELECTED_LEAGUE':
-//             return Object.assign({}, state, {
-//                 selectedLeague: action._id,
-//                 sortField: 'default'
-//             });
-//         case 'RE_ORDER_TABLE':
-//             return Object.assign({}, state, {
-//                 sortField: action.column
-//             });
-
-//         default: return state;
-//     }
-// };
-
-
