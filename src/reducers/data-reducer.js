@@ -19,20 +19,24 @@ const leagues = (state = [], action) => {
                 fixtures: league.fixtures.map(fixture => fixture._id)
             }));
         case EDIT_LEAGUE_NAME_SUCCESS:
-            return state.map(league => (league._id === action._id) ? Object.assign({}, league, {
-                leagueName: action.leagueName
-            }) : league);
+            return state.map(league => (league._id === action._id)
+                ? Object.assign({}, league, {
+                    leagueName: action.leagueName
+                })
+                : league);
         case ADD_LEAGUE_SUCCESS:
             return [...state,
             action.league
             ];
         case ADD_TEAM_SUCCESS:
-            return state.map(league => (league._id === action._id) ? Object.assign({}, league, {
-                teams : [
-                    ...league.teams,
-                    action.team._id
-                ]
-            }) : league);
+            return state.map(league => (league._id === action._id)
+                ? Object.assign({}, league, {
+                    teams: [
+                        ...league.teams,
+                        action.team._id
+                    ]
+                })
+                : league);
         case DELETE_LEAGUE_SUCCESS:
             return state.filter(league => league._id !== action._id);
         case DELETE_TEAM_SUCCESS:
@@ -52,9 +56,11 @@ const teams = (state = [], action) => {
             action.team
             ];
         case EDIT_TEAM_NAME_SUCCESS:
-            return state.map(team => (team._id === action._id) ? Object.assign({}, team, {
-                teamName: action.teamName
-            }) : team);
+            return state.map(team => (team._id === action._id)
+                ? Object.assign({}, team, {
+                    teamName: action.teamName
+                })
+                : team);
         case DELETE_TEAM_SUCCESS:
             return state.filter(team => team._id !== action._id);
         default: return state;
@@ -69,13 +75,9 @@ const fixtures = (state = [], action) => {
     }
 };
 
-const selectedLeague = (state = '', action) => {
-    if (action.type === CHANGE_SELECTED_LEAGUE) {
-        return action._id;
-    } else {
-        return state;
-    }
-};
+const selectedLeague = (state = '', action) => (action.type === CHANGE_SELECTED_LEAGUE)
+    ? action._id
+    : state;
 
 const data = combineReducers({
     leagues,
@@ -86,10 +88,15 @@ const data = combineReducers({
 
 export default data;
 
+// const extractField = (action, field) => {
+//     let array = [];
+//     action.leagues.forEach(league => {
+//         array = array.concat(league[field]);
+//     });
+//     return array;
+// };
+
 const extractField = (action, field) => {
-    let array = [];
-    action.leagues.forEach(league => {
-        array = array.concat(league[field]);
-    });
-    return array;
+    return action.leagues.map(league => league[field])
+        .reduce((a, b) => a.concat(b));
 };
