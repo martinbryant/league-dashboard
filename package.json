@@ -17,6 +17,7 @@
     "axios": "^0.15.3",
     "babel-polyfill": "6.8.0",
     "bootstrap": "3.3.6",
+    "data.either": "^1.5.0",
     "jquery": "2.2.3",
     "lodash": "^4.17.4",
     "ramda": "^0.23.0",
