@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { sortTableByColumn, toggleSortOrder } from './home-page-actions';
+import { sortTableByColumn, toggleSortOrder } from '../actions/ui-actions';
 
 import LeagueTableHeaderComponent from './league-table-header-component';
 

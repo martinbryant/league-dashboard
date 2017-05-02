@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { changeSelectedLeague } from './home-page-actions';
+import { changeSelectedLeague } from '../actions/ui-actions';
 import LeagueDropdownComponent from './league-dropdown-component';
 
 export const mapStateToProps = (state) => {
