@@ -1,7 +1,7 @@
 import expect from 'expect';
 
 import { mapStateToProps } from '../league-dropdown-container';
-import { changeSelectedLeague } from '../home-page-actions';
+import { changeSelectedLeague } from '../../actions/ui-actions';
 
 const mockLeagues = [
     {
