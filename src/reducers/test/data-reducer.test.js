@@ -298,24 +298,7 @@ describe('data reducer tests', () => {
     });
     it('should handle EDIT_TEAM_NAME_SUCCESS', () => {
         const oldState = {
-            teams: [
-                {
-                    _id: 'TeamId1',
-                    teamName: 'Team1'
-                },
-                {
-                    _id: 'TeamId2',
-                    teamName: 'Team2'
-                },
-                {
-                    _id: 'TeamId3',
-                    teamName: 'Team3'
-                },
-                {
-                    _id: 'TeamId4',
-                    teamName: 'Team4'
-                }
-            ]
+            teams: mockOldState.teams
         };
         const mockAction = {
             type: EDIT_TEAM_NAME_SUCCESS,

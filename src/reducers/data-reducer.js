@@ -14,15 +14,19 @@ import {
 const leagues = (state = [], action) => {
     switch (action.type) {
         case LOAD_ALL_LEAGUES_SUCCESS:
-            return action.leagues.map(league => Object.assign({}, league, {
-                teams: league.teams.map(team => team._id),
-                fixtures: league.fixtures.map(fixture => fixture._id)
-            }));
+            return action.leagues.map(league => {
+                return {
+                    ...league,
+                    teams: league.teams.map(team => team._id),
+                    fixtures: league.fixtures.map(fixture => fixture._id)
+                };
+            });
         case EDIT_LEAGUE_NAME_SUCCESS:
             return state.map(league => (league._id === action._id)
-                ? Object.assign({}, league, {
+                ? {
+                    ...league,
                     leagueName: action.leagueName
-                })
+                }
                 : league);
         case ADD_LEAGUE_SUCCESS:
             return [...state,
@@ -30,19 +34,23 @@ const leagues = (state = [], action) => {
             ];
         case ADD_TEAM_SUCCESS:
             return state.map(league => (league._id === action._id)
-                ? Object.assign({}, league, {
+                ? {
+                    ...league,
                     teams: [
                         ...league.teams,
                         action.team._id
                     ]
-                })
+                }
                 : league);
         case DELETE_LEAGUE_SUCCESS:
             return state.filter(league => league._id !== action._id);
         case DELETE_TEAM_SUCCESS:
-            return state.map(league => Object.assign({}, league, {
-                teams: league.teams.filter(team => team !== action._id)
-            }));
+            return state.map(league => {
+                return {
+                    ...league,
+                    teams: league.teams.filter(team => team !== action._id)
+                };
+            });
         default: return state;
     }
 };
@@ -57,9 +65,10 @@ const teams = (state = [], action) => {
             ];
         case EDIT_TEAM_NAME_SUCCESS:
             return state.map(team => (team._id === action._id)
-                ? Object.assign({}, team, {
+                ? {
+                    ...team,
                     teamName: action.teamName
-                })
+                }
                 : team);
         case DELETE_TEAM_SUCCESS:
             return state.filter(team => team._id !== action._id);
