@@ -1,5 +1,6 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack');
 
 module.exports = {
     entry: './src/index',
@@ -11,10 +12,13 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Dashboard',
             template: './src/index.html'
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin()
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
+        hot: true,
         compress: true,
         port: 8000,
         stats: 'errors-only'
