@@ -5,7 +5,7 @@ import { sortTableByColumn, toggleSortOrder } from '../actions/ui-actions';
 import LeagueTableHeaderComponent from './league-table-header-component';
 
 const mapStateToProps = (state) => {
-    const {tableColumns, sortOrder, sortColumn} = state.ui;
+    const { tableColumns, sortOrder, sortColumn } = state.ui;
     return {
         tableColumns,
         sortOrder,
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onSortColumnChange: (e) => {
-            dispatch(sortTableByColumn(e.target.value));
+            dispatch(sortTableByColumn(e.target.id));
         }
     };
 };

@@ -7,7 +7,7 @@ const TableSortIndicatorComponent = ({ sortOrder, isSortIndicatorDisplayed, onSo
     return (
         (isSortIndicatorDisplayed) ?
             <span style={{ float: 'right' }}
-                value={sortOrder}
+                id={sortOrder}
                 className={(sortOrder == 'desc') ? sortArrowDown : sortArrowUp}
                 onClick={onSortOrderChange}>
             </span>

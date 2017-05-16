@@ -9,7 +9,7 @@ const LeagueTableHeaderComponent = ({tableColumns, sortColumn, onSortColumnChang
             {tableColumns.map(column => {
                 return (
                     <th key={column.field}
-                        value={column.field}
+                        id={column.field}
                         onClick={(sortColumn != column.field) ? onSortColumnChange : ''}>{column.heading}
                         <TableSortIndicatorContainer sortField={column.field} /></th>);
             })}
