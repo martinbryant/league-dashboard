@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { orderBy } from 'lodash';
 
 import LeagueTableComponent from './league-table-component';
-import { findTeamsForSelectedLeague, sortTable } from './home-page-selectors';
+import { findTeamsForSelectedLeague, sortTable } from '../selectors/data-selectors';
 
 const mapStateToProps = (state) => {
     const {leagues, selectedLeague} = state.data;

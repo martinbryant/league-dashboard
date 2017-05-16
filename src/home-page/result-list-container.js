@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import ResultListComponent from './result-list-component';
-import { findResultsForSelectedLeague } from './home-page-selectors';
+import { findResultsForSelectedLeague } from '../selectors/data-selectors';
 
 const mapStateToProps = (state) => {
     const {leagues, selectedLeague} = state.data;
