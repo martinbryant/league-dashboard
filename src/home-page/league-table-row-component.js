@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const LeagueTableRowComponent = ({_id, teamName, played, won, drawn, lost, shotsFor, shotsAgainst, shotsDifference, points }) => {
     return (

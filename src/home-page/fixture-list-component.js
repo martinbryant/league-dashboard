@@ -1,8 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import FixtureListRowComponent from './fixture-list-row-component';
 
-const FixtureListComponent = ({fixtures}) => {
+const FixtureListComponent = ({ fixtures }) => {
     return (
         <ul>{
             fixtures.map(fixture => {
