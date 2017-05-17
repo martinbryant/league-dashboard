@@ -17,6 +17,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onSortColumnChange: (e) => {
             dispatch(sortTableByColumn(e.target.id));
+        },
+        onSortOrderChange: (e) => {
+            dispatch(toggleSortOrder(e.target.id));
         }
     };
 };

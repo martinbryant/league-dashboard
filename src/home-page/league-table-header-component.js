@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TableSortIndicatorContainer from './table-sort-indicator-container';
-import { sortArrowUp, sortArrowDown } from '../constants';
+import TableSortIndicatorComponent from './table-sort-indicator-component';
 
-const LeagueTableHeaderComponent = ({tableColumns, sortColumn, onSortColumnChange}) => {
+const LeagueTableHeaderComponent = ({ tableColumns, sortColumn, sortOrder, onSortColumnChange, onSortOrderChange }) => {
     return (
         <tr>
             {tableColumns.map(column => {
                 return (
                     <th key={column.field}
                         id={column.field}
-                        onClick={(sortColumn != column.field) ? onSortColumnChange : ''}>{column.heading}
-                        <TableSortIndicatorContainer sortField={column.field} /></th>);
+                        onClick={(sortColumn != column.field)
+                            ? onSortColumnChange
+                            : null}>{column.heading}
+                        {(column.field == sortColumn)
+                            ? <TableSortIndicatorComponent sortOrder={sortOrder}
+                                onSortOrderChange={onSortOrderChange} />
+                            : null}</th>);
             })}
         </tr>
     );
@@ -21,7 +25,9 @@ const LeagueTableHeaderComponent = ({tableColumns, sortColumn, onSortColumnChang
 LeagueTableHeaderComponent.propTypes = {
     tableColumns: PropTypes.array.isRequired,
     sortColumn: PropTypes.string.isRequired,
-    onSortColumnChange: PropTypes.func.isRequired
+    sortOrder: PropTypes.string.isRequired,
+    onSortColumnChange: PropTypes.func.isRequired,
+    onSortOrderChange: PropTypes.func.isRequired
 };
 
 export default LeagueTableHeaderComponent;
