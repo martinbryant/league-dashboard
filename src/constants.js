@@ -1,5 +1,5 @@
-export const sortArrowUp = 'glyphicon glyphicon-triangle-top';
-export const sortArrowDown = 'glyphicon glyphicon-triangle-bottom';
+export const SORT_ARROW_UP = 'glyphicon glyphicon-triangle-top';
+export const SORT_ARROW_DOWN = 'glyphicon glyphicon-triangle-bottom';
 
 export const LOAD_ALL_LEAGUES_SUCCESS = 'LOAD_ALL_LEAGUES_SUCCESS';
 export const CHANGE_SELECTED_LEAGUE = 'CHANGE_SELECTED_LEAGUE';
