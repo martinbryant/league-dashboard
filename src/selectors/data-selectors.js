@@ -5,9 +5,15 @@ const findLeague = (leagues, leagueToFind) => leagues.find(league => league._id 
 
 const getProperty = prop => obj => obj[prop];
 
-const getLeaguesTeams = league => getProperty('teams');
+const getLeaguesTeamIds = league => getProperty('teams');
 
 const getLeaguesFixtures = league => getProperty('fixtures');
+
+const getLeagueName = league => getProperty('leagueName');
+
+const getTeamsFromIds = teams => teamIds => {
+    return teamIds.map(teamId => teams.find(team => team._id === teamId));
+};
 
 const getFixturesOrResults = status => fixtures => fixtures.filter(fixture => (status == 'fixture')
     ? !fixture.played
@@ -17,14 +23,22 @@ const getResults = fixtures => getFixturesOrResults('results');
 
 const getUnplayedFixtures = fixtures => getFixturesOrResults('fixture');
 
+const getTeamNamesAndId = teams => teams.map(team => {
+    const { teamName, _id } = team;
+    return {
+        teamName,
+        _id
+    };
+});
+
 //exports
 
-export const findTeamsForSelectedLeague = (leagues, selectedLeague) => {
+export const findTeamsForSelectedLeague = (leagues, teams, selectedLeague) => {
     return Either.fromNullable(findLeague(leagues, selectedLeague))
-        .map(getLeaguesTeams())
+        .map(getLeaguesTeamIds())
+        .map(getTeamsFromIds(teams))
         .getOrElse([]);
 };
-
 
 export const findFixturesForSelectedLeague = (leagues, selectedLeague) => {
     return Either.fromNullable(findLeague(leagues, selectedLeague))
@@ -39,6 +53,27 @@ export const findResultsForSelectedLeague = (leagues, selectedLeague) => {
         .map(getResults())
         .getOrElse([]);
 };
+
+export const findLeagueNameForSelectedLeague = (leagues, leagueId) => {
+    return Either.fromNullable(findLeague(leagues, leagueId))
+        .map(getLeagueName())
+        .getOrElse('');
+};
+
+export const findTeamNamesAndIdForSelectedLeague = (leagues, teams, leagueId) => {
+    return Either.fromNullable(findLeague(leagues, leagueId))
+        .map(getLeaguesTeamIds())
+        .map(getTeamsFromIds(teams))
+        .map(getTeamNamesAndId)
+        .getOrElse([]);
+};
+
+export const checkNameIsUnique = (items, name, field) => {
+    return (items.find(item => item[field] === name)
+        ? false
+        : true);
+}
+
 
 export const sortTable = (teams, sortColumn, sortOrder) => {
     let sortFields = [];

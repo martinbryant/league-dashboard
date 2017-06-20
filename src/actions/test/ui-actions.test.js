@@ -27,4 +27,18 @@ describe('ui actions', () => {
     };
     expect(actions.toggleSortOrder(mockSortOrder)).toEqual(expectedAction);
   });
+  it('should create an action to enable edit mode', () => {
+    const mockEditField = 'leagueName';
+    const expectedAction = {
+      type: 'ENABLE_EDIT_MODE',
+      editField : mockEditField
+    };
+    expect(actions.enableEditMode(mockEditField)).toEqual(expectedAction);
+  });
+  it('should create an action to disable edit mode', () => {
+    const expectedAction = {
+      type: 'DISABLE_EDIT_MODE'
+    };
+    expect(actions.disableEditMode()).toEqual(expectedAction);
+  });
 });

@@ -9,4 +9,8 @@ describe('<LeagueNameEditComponent/>', () => {
         const wrapper = shallow(<LeagueNameEditComponent/>);
         expect(wrapper.find('div').length).toBe(1);
     });
+    it('should render a h3', () => {
+        const wrapper = shallow(<LeagueNameEditComponent/>);
+        expect(wrapper.find('h3').length).toBe(1);
+    });
 });

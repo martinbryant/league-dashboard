@@ -6,15 +6,28 @@ describe('data selectors', () => {
     it('should handle findTeamsForSelectedLeague with data', () => {
         const mockLeague = [{
             _id: 'LeagueId1',
-            teams: [{
+            teams: [
+                'TeamId1',
+                'TeamId2']
+        }];
+        const mockTeams = [
+            {
                 teamName: 'Team1',
                 _id: 'TeamId1'
             },
             {
                 teamName: 'Team2',
                 _id: 'TeamId2'
-            }]
-        }];
+            },
+            {
+                teamName: 'Team3',
+                _id: 'TeamId3'
+            },
+            {
+                teamName: 'Team4',
+                _id: 'TeamId4'
+            }
+        ];
         const result = [{
             teamName: 'Team1',
             _id: 'TeamId1'
@@ -23,7 +36,7 @@ describe('data selectors', () => {
             teamName: 'Team2',
             _id: 'TeamId2'
         }];
-        expect(selector.findTeamsForSelectedLeague(mockLeague, 'LeagueId1')).toEqual(result);
+        expect(selector.findTeamsForSelectedLeague(mockLeague, mockTeams, 'LeagueId1')).toEqual(result);
     });
     it('should handle findTeamsForSelectedLeague with no leagues', () => {
         const mockLeague = [];
@@ -135,6 +148,127 @@ describe('data selectors', () => {
         const result = [];
         expect(selector.findResultsForSelectedLeague(mockLeague, 'LeagueId1')).toEqual(result);
     });
+    it('should handle findLeagueNameForSelectedLeague and return leagueName', () => {
+        const mockLeague = [{
+            _id: 'LeagueId1',
+            leagueName: 'League 1',
+            fixtures: [{
+                played: false,
+                _id: 'FixtureId1'
+            },
+            {
+                played: false,
+                _id: 'FixtureId2'
+            }]
+        }];
+        const result = 'League 1';
+        expect(selector.findLeagueNameForSelectedLeague(mockLeague, 'LeagueId1')).toEqual(result);
+    });
+    it('should handle findLeagueNameForSelectedLeague and return empty string', () => {
+        const mockLeague = [{
+            _id: 'LeagueId1',
+            leagueName: 'League 1',
+            fixtures: [{
+                played: false,
+                _id: 'FixtureId1'
+            },
+            {
+                played: false,
+                _id: 'FixtureId2'
+            }]
+        }];
+        const result = '';
+        expect(selector.findLeagueNameForSelectedLeague(mockLeague, 'LeagueId2')).toEqual(result);
+    });
+    it('should handle findTeamNamesAndIdForSelectedLeague and return names and ids', () => {
+        const mockLeague = [{
+            _id: 'LeagueId1',
+            teams: [
+                'TeamId1',
+                'TeamId2']
+        }];
+        const mockTeams = [{
+            teamName: 'Team1',
+            _id: 'TeamId1',
+            points: 0
+        },
+        {
+            teamName: 'Team2',
+            _id: 'TeamId2',
+            points: 0
+        }];
+        const result = [{
+            teamName: 'Team1',
+            _id: 'TeamId1'
+        },
+        {
+            teamName: 'Team2',
+            _id: 'TeamId2'
+        }];
+        expect(selector.findTeamNamesAndIdForSelectedLeague(mockLeague, mockTeams, 'LeagueId1')).toEqual(result);
+    });
+    it('should handle findTeamNamesAndIdForSelectedLeague and return empty array', () => {
+        const mockLeague = [{
+            _id: 'LeagueId1',
+            teams: [{
+                teamName: 'Team1',
+                _id: 'TeamId1',
+                points: 0
+            },
+            {
+                teamName: 'Team2',
+                _id: 'TeamId2',
+                points: 0
+            }]
+        }];
+        const result = [];
+        expect(selector.findTeamNamesAndIdForSelectedLeague(mockLeague, 'LeagueId2')).toEqual(result);
+    });
+    it('should handle checkNameIsUnique and return false if the teamName exists', () => {
+        const mockTeams = [
+            {
+                teamName: 'Team1',
+                _id: 'TeamId1'
+            },
+            {
+                teamName: 'Team2',
+                _id: 'TeamId2'
+            },
+            {
+                teamName: 'Team3',
+                _id: 'TeamId3'
+            },
+            {
+                teamName: 'Team4',
+                _id: 'TeamId4'
+            }
+        ];
+        const result = false;
+        expect(selector.checkNameIsUnique(mockTeams, 'Team1', 'teamName')).toEqual(result);
+    });
+    it('should handle checkNameIsUnique and return true if the teamName does not exist', () => {
+        const mockTeams = [
+            {
+                teamName: 'Team1',
+                _id: 'TeamId1'
+            },
+            {
+                teamName: 'Team2',
+                _id: 'TeamId2'
+            },
+            {
+                teamName: 'Team3',
+                _id: 'TeamId3'
+            },
+            {
+                teamName: 'Team4',
+                _id: 'TeamId4'
+            }
+        ];
+        const result = true;
+        expect(selector.checkNameIsUnique(mockTeams, 'Team5', 'teamName')).toEqual(result);
+    });
+
     // it('should handle sortTable with default sort order', () => {
     //     const mockTeams = [
     //         {

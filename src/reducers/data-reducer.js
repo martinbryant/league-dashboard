@@ -33,7 +33,7 @@ const leagues = (state = [], action) => {
             action.league
             ];
         case ADD_TEAM_SUCCESS:
-            return state.map(league => (league._id === action._id)
+            return state.map(league => (league._id === action.leagueId)
                 ? {
                     ...league,
                     teams: [
