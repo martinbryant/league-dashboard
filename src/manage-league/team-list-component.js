@@ -21,6 +21,7 @@ const TeamListComponent = ({ teams, inEditMode, editField, enableEditMode, saveT
                                     resetEditMode={cancelEdit}
                                     isNameUnique={isNameUnique} />
                                 : <TeamListRowComponent
+                                    key={team._id}
                                     team={team}
                                     inEditMode={inEditMode}
                                     enableEditMode={enableEditMode}
