@@ -4,9 +4,9 @@ import FixtureListComponent from './fixture-list-component';
 import { findFixturesForSelectedLeague } from '../selectors/data-selectors';
 
 const mapStateToProps = (state) => {
-    const {leagues, selectedLeague} = state.data;
+    const {leagues, fixtures, selectedLeague} = state.data;
     return {
-        fixtures: findFixturesForSelectedLeague(leagues, selectedLeague)
+        fixtures: findFixturesForSelectedLeague(leagues, fixtures, selectedLeague)
             .map(fixture => {
                 return {
                     _id: fixture._id,

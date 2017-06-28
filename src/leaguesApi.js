@@ -726,6 +726,14 @@ class LeaguesApi {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(Object.assign([], leagues));
+            }, 2000);
+        });
+    }
+
+    static deleteLeague(leagueId) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(leagueId);
             }, 1000);
         });
     }

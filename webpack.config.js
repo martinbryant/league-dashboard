@@ -11,7 +11,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Dashboard',
-            template: './src/index.html'
+            template: './src/index.html',
+            inject: false
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin()
@@ -21,7 +22,8 @@ module.exports = {
         hot: true,
         compress: true,
         port: 8000,
-        stats: 'errors-only'
+        stats: 'errors-only',
+        historyApiFallback: true
     },
     module: {
         loaders: [
@@ -35,8 +37,8 @@ module.exports = {
                 loaders: ['style-loader', 'css-loader']
             },
             {
-                test: /\.(woff|woff2)$/,
-                use: 'url-loader?prefix=font/&limit=5000'
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: 'url-loader?prefix=font/&limit=10000&mimetype=application/font-woff'
             },
             {
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,

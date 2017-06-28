@@ -34,3 +34,19 @@ export const newName = name => ({
     type: 'UPDATE_NEW_NAME',
     name
 });
+
+export const enableLoading = () => ({
+    type: 'LOADING'
+});
+
+export const openDeleteModal = (id, name, field) => ({
+    type: 'SHOW_DELETE_MODAL',
+    id,
+    name,
+    field
+});
+
+export const closeDeleteModal = id => ({
+    type: 'CLOSE_DELETE_MODAL',
+    id
+});

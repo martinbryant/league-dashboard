@@ -84,9 +84,15 @@ const fixtures = (state = [], action) => {
     }
 };
 
-const selectedLeague = (state = '', action) => (action.type === CHANGE_SELECTED_LEAGUE)
-    ? action._id
-    : state;
+const selectedLeague = (state = '', action) => {
+    switch (action.type) {
+        case CHANGE_SELECTED_LEAGUE:
+            return action._id;
+        case LOAD_ALL_LEAGUES_SUCCESS:
+            return action.leagues[0]._id || '';
+        default: return state;
+    }
+};
 
 const data = combineReducers({
     leagues,

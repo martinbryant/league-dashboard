@@ -1,15 +1,17 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Route, Switch } from 'react-router-dom';
 
-const App = (props) => {
+import HomePage from './home-page/home-page';
+import ManageLeague from './manage-league/manage-league';
+
+const App  = () => {
     return (
-        <div className="container-fluid">
-            {props.children}
-        </div>
+        <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/league/:leagueId" component={ManageLeague} />
+        </Switch>
     );
-};
-
-App.propTypes = {
-    children: PropTypes.object.isRequired
 };
 
 export default App;

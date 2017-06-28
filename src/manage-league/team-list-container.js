@@ -1,47 +1,54 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import TeamListComponent from './team-list-component';
-import { enableEditMode, disableEditMode } from '../actions/ui-actions';
-import { editTeam, deleteTeam } from '../actions/data-actions';
+import { enableEditMode, disableEditMode, openDeleteModal } from '../actions/ui-actions';
+import { editTeamName, deleteTeam } from '../actions/data-actions';
 import { findTeamNamesAndIdForSelectedLeague, checkNameIsUnique } from '../selectors/data-selectors';
 
 // change hardcoded leagueId for ownProps
 
-const mapStateToProps = (state) => {
-    const { inEditMode, editField } = state.ui;
+const mapStateToProps = (state, ownProps) => {
+    const { inEditMode, editField, showModal } = state.ui;
     const { leagues, teams } = state.data;
+    const { leagueId } = ownProps.match.params;
     return {
         inEditMode,
         editField,
-        teams: findTeamNamesAndIdForSelectedLeague(leagues, teams, "5776ce4e8c1880374cddd328"),
-        isNameUnique: (name) => checkNameIsUnique(teams, name, 'teamName')
-
+        teams: findTeamNamesAndIdForSelectedLeague(leagues, teams, leagueId),
+        isNameUnique: (name) => checkNameIsUnique(teams, name, 'teamName'),
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
         enableEditMode: e => {
             dispatch(enableEditMode(e.target.id));
         },
         saveTeamName: e => {
             e.preventDefault();
-            let teamNameText = e.target['0'].value;
-            let teamId = e.target['0'].id;
-            dispatch(editTeam(teamId, teamNameText));
+            const { value, id } = e.target['0'];
+            dispatch(editTeamName(value, id));
             dispatch(disableEditMode());
         },
         deleteTeam: e => {
-            let teamId = e.target.id;
-            dispatch(deleteTeam(teamId));
-            dispatch(disableEditMode());
+            const { id } = e.target;
+            dispatch(deleteTeam(id));
         },
         cancelEdit: () => {
             dispatch(disableEditMode());
+        },
+        openModal: (e) => {
+            let target;
+            (e.target.nodeName === 'SPAN')
+                ? target = e.target.parentNode
+                : target = e.target;
+            const { id, value } = target;
+            dispatch(openDeleteModal(id, value, 'team'));
         }
     };
 };
 
-const TeamListContainer = connect(mapStateToProps, mapDispatchToProps)(TeamListComponent);
+const TeamListContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(TeamListComponent));
 
 export default TeamListContainer;

@@ -1,18 +1,20 @@
 import { orderBy } from 'lodash';
 import Either from 'data.either';
 
-const findLeague = (leagues, leagueToFind) => leagues.find(league => league._id === leagueToFind);
-
 const getProperty = prop => obj => obj[prop];
 
 const getLeaguesTeamIds = league => getProperty('teams');
 
-const getLeaguesFixtures = league => getProperty('fixtures');
+const getLeaguesFixtureIds = league => getProperty('fixtures');
 
 const getLeagueName = league => getProperty('leagueName');
 
 const getTeamsFromIds = teams => teamIds => {
     return teamIds.map(teamId => teams.find(team => team._id === teamId));
+};
+
+const getFixturesFromIds = fixtures => fixtureIds => {
+    return fixtureIds.map(fixtureId => fixtures.find(fixture => fixture._id === fixtureId));
 };
 
 const getFixturesOrResults = status => fixtures => fixtures.filter(fixture => (status == 'fixture')
@@ -33,6 +35,8 @@ const getTeamNamesAndId = teams => teams.map(team => {
 
 //exports
 
+export const findLeague = (leagues, leagueToFind) => leagues.find(league => league._id === leagueToFind);
+
 export const findTeamsForSelectedLeague = (leagues, teams, selectedLeague) => {
     return Either.fromNullable(findLeague(leagues, selectedLeague))
         .map(getLeaguesTeamIds())
@@ -40,16 +44,18 @@ export const findTeamsForSelectedLeague = (leagues, teams, selectedLeague) => {
         .getOrElse([]);
 };
 
-export const findFixturesForSelectedLeague = (leagues, selectedLeague) => {
+export const findFixturesForSelectedLeague = (leagues, fixtures, selectedLeague) => {
     return Either.fromNullable(findLeague(leagues, selectedLeague))
-        .map(getLeaguesFixtures())
+        .map(getLeaguesFixtureIds())
+        .map(getFixturesFromIds(fixtures))
         .map(getUnplayedFixtures())
         .getOrElse([]);
 };
 
-export const findResultsForSelectedLeague = (leagues, selectedLeague) => {
+export const findResultsForSelectedLeague = (leagues, fixtures, selectedLeague) => {
     return Either.fromNullable(findLeague(leagues, selectedLeague))
-        .map(getLeaguesFixtures())
+        .map(getLeaguesFixtureIds())
+        .map(getFixturesFromIds(fixtures))
         .map(getResults())
         .getOrElse([]);
 };
@@ -72,7 +78,7 @@ export const checkNameIsUnique = (items, name, field) => {
     return (items.find(item => item[field] === name)
         ? false
         : true);
-}
+};
 
 
 export const sortTable = (teams, sortColumn, sortOrder) => {

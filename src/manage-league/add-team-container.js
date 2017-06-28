@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import AddTeamComponent from './add-team-component';
-import { enableEditMode, disableEditMode} from '../actions/ui-actions';
+import { enableEditMode, disableEditMode } from '../actions/ui-actions';
 import { addTeam } from '../actions/data-actions';
 import { checkNameIsUnique } from '../selectors/data-selectors';
 
@@ -19,7 +20,8 @@ const mapStateToProps = (state) => {
 
 //ownProps for leagueId
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+    const { leagueId } = ownProps.match.params;
     return {
         enableEditMode: e => {
             dispatch(enableEditMode(e.target.id));
@@ -27,7 +29,7 @@ const mapDispatchToProps = (dispatch) => {
         saveTeamName: e => {
             e.preventDefault();
             let teamNameText = e.target['0'].value;
-            dispatch(addTeam("5776ce4e8c1880374cddd328", teamNameText));
+            dispatch(addTeam(leagueId, teamNameText));
             dispatch(disableEditMode());
         },
         cancelEdit: () => {
@@ -36,6 +38,6 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-const AddTeamContainer = connect(mapStateToProps, mapDispatchToProps)(AddTeamComponent);
+const AddTeamContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(AddTeamComponent));
 
 export default AddTeamContainer;

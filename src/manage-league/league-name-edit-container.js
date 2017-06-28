@@ -1,19 +1,18 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import LeagueNameEditComponent from './league-name-edit-component';
 import { findLeagueNameForSelectedLeague, checkNameIsUnique } from '../selectors/data-selectors';
-import { enableEditMode, disableEditMode } from '../actions/ui-actions';
+import { enableEditMode, disableEditMode, openDeleteModal } from '../actions/ui-actions';
 import { editLeagueNameSuccess } from '../actions/data-actions';
-
-
-//ownProps for leagueId
 
 const mapStateToProps = (state, ownProps) => {
     const { inEditMode, editField } = state.ui;
     const { leagues } = state.data;
-    const { leagueId } = ownProps;
+    const { leagueId } = ownProps.match.params;
     return {
-        leagueName: findLeagueNameForSelectedLeague(leagues, "5776ce4e8c1880374cddd328"),
+        leagueName: findLeagueNameForSelectedLeague(leagues, leagueId),
+        leagueId,
         inEditMode,
         editField,
         isNameUnique: (name) => checkNameIsUnique(leagues, name, 'leagueName')
@@ -29,15 +28,23 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         saveLeagueName: (e) => {
             e.preventDefault();
             let leagueName = e.target['0'].value;
-            dispatch(editLeagueNameSuccess("5776ce4e8c1880374cddd328", leagueName));
+            dispatch(editLeagueNameSuccess(leagueId, leagueName));
             dispatch(disableEditMode());
         },
         cancelEdit: () => {
             dispatch(disableEditMode());
+        },
+        openModal: (e) => {
+            let target;
+            (e.target.nodeName === 'SPAN')
+                ? target = e.target.parentNode
+                : target = e.target;
+            const { id, value } = target;
+            dispatch(openDeleteModal(id, value, 'league'));
         }
     };
 };
 
-const LeagueNameEditContainer = connect(mapStateToProps, mapDispatchToProps)(LeagueNameEditComponent);
+const LeagueNameEditContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(LeagueNameEditComponent));
 
 export default LeagueNameEditContainer;

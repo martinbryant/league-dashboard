@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ListGroupItem, Button, ButtonToolbar, Glyphicon } from 'react-bootstrap';
 
-const TeamListRowComponent = ({ team, inEditMode, enableEditMode, deleteTeam }) => {
+const TeamListRowComponent = ({ team, inEditMode, enableEditMode, openModal }) => {
     return (
         <ListGroupItem
             key={team._id}>{team.teamName}
@@ -20,12 +20,12 @@ const TeamListRowComponent = ({ team, inEditMode, enableEditMode, deleteTeam }) 
                 <Button
                     type="button"
                     id={team._id}
+                    value={team.teamName}
                     bsStyle="danger"
                     bsSize="xsmall"
                     disabled={inEditMode}
-                    onClick={deleteTeam}>
+                    onClick={openModal}>
                     <Glyphicon
-                        id={team._id}
                         glyph="remove" /></Button>
             </ButtonToolbar>
         </ListGroupItem>
@@ -36,7 +36,7 @@ TeamListRowComponent.propTypes = {
     team: PropTypes.object.isRequired,
     inEditMode: PropTypes.bool.isRequired,
     enableEditMode: PropTypes.func.isRequired,
-    deleteTeam : PropTypes.func.isRequired
+    openModal: PropTypes.func.isRequired
 };
 
 export default TeamListRowComponent;

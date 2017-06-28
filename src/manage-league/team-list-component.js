@@ -4,8 +4,9 @@ import { Table, ListGroup, ListGroupItem, Button, ButtonGroup, ButtonToolbar, Gl
 
 import EditForm from './edit-form-component';
 import TeamListRowComponent from './team-list-row-component';
+import DeleteModal from './delete-modal';
 
-const TeamListComponent = ({ teams, inEditMode, editField, enableEditMode, saveTeamName, deleteTeam, cancelEdit, isNameUnique }) => {
+const TeamListComponent = ({ teams, inEditMode, editField, enableEditMode, saveTeamName, deleteTeam, cancelEdit, isNameUnique, openModal }) => {
     return (
         <div>
             <ListGroup>
@@ -25,11 +26,12 @@ const TeamListComponent = ({ teams, inEditMode, editField, enableEditMode, saveT
                                     team={team}
                                     inEditMode={inEditMode}
                                     enableEditMode={enableEditMode}
-                                    deleteTeam={deleteTeam} />
+                                    openModal={openModal} />
                         );
                     })
                 }
             </ListGroup>
+            <DeleteModal />
         </div>
     );
 };
@@ -43,31 +45,7 @@ TeamListComponent.propTypes = {
     cancelEdit: PropTypes.func.isRequired,
     deleteTeam: PropTypes.func.isRequired,
     isNameUnique: PropTypes.func.isRequired,
+    openModal: PropTypes.func.isRequired
 };
 
 export default TeamListComponent;
-
-{/*<List>
-                {
-                    teams.map(team => {
-                        return (
-                            (inEditMode && editField === team._id)
-                                ? <EditForm
-                                    key={team._id}
-                                    id={team._id}
-                                    defaultText={team.teamName}
-                                    saveTextFieldData={saveTeamName}
-                                    resetEditMode={cancelEdit} />
-                                : <ListItem
-                                    key={team._id}
-                                    primaryText={team.teamName}
-                                    rightIcon={<FontIcon
-                                        className="material-icons"
-                                        color={blue500}
-                                        id={team._id}
-                                        onClick={(!inEditMode ? enableEditMode : null)}>
-                                        create
-                                    </FontIcon>} />);
-                    })
-                }
-            </List>*/}

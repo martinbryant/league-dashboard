@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 
 import LeagueControlsComponent from './league-controls-component';
 
@@ -15,9 +14,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         addLeague: () => {
             // dispatch(push('/add-league'));
-        },
-        editLeague: (selectedLeague) => {
-            browserHistory.push('/manage-league/' + selectedLeague);
         }
     };
 };

@@ -5,7 +5,9 @@ import {
     CHANGE_SELECTED_LEAGUE,
     TOGGLE_SORT_ORDER,
     ENABLE_EDIT_MODE,
-    DISABLE_EDIT_MODE
+    DISABLE_EDIT_MODE,
+    EDIT_TEAM_NAME_SUCCESS,
+    ADD_TEAM_SUCCESS
 } from '../constants';
 
 const sortColumn = (state = 'default', action) => {
@@ -50,12 +52,33 @@ const editField = (state = '', action) => {
     }
 };
 
-const showConfirmModal = (state = false, action) => {
-    switch (action.type) {
-        case 'CONFIRM_DELETE_ACTION':
+const loading = (state = false, action) => {
+    switch (true) {
+        case action.type.includes('STARTED'):
             return true;
-        case 'CANCEL_CONFIRM_ACTION':
+        case action.type.includes('SUCCESS'):
+        case action.type.includes('ERROR'):
             return false;
+        default: return state;
+    }
+};
+
+const modal = (state = { isOpen: false }, action) => {
+    switch (action.type) {
+        case 'SHOW_DELETE_MODAL':
+            return {
+                ...state,
+                id: action.id,
+                name: action.name,
+                field: action.field,
+                isOpen: true
+            };
+        case 'CLOSE_DELETE_MODAL':
+        case 'DELETE_TEAM_SUCCESS':
+        case 'DELETE_LEAGUE_SUCCESS':
+            return {
+                isOpen: false
+            };
         default: return state;
     }
 };
@@ -66,7 +89,8 @@ const ui = combineReducers({
     tableColumns,
     inEditMode,
     editField,
-    showConfirmModal
+    loading,
+    modal
 });
 
 export default ui;

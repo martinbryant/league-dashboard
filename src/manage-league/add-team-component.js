@@ -34,7 +34,7 @@ AddTeamComponent.propTypes = {
     enableEditMode: PropTypes.func.isRequired,
     saveTeamName: PropTypes.func.isRequired,
     cancelEdit: PropTypes.func.isRequired,
-    isNameUnique: PropTypes.bool.isRequired
+    isNameUnique: PropTypes.func.isRequired
 };
 
 export default AddTeamComponent;

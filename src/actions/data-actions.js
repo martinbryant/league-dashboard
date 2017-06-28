@@ -10,6 +10,10 @@ import {
 
 import leaguesApi from '../leaguesApi';
 
+export const loadAllLeaguesStarted = () => ({
+    type: 'LOAD_ALL_LEAGUES_STARTED'
+});
+
 export const loadAllLeaguesSuccess = leagues => ({
     type: LOAD_ALL_LEAGUES_SUCCESS,
     leagues
@@ -26,23 +30,37 @@ export const addLeagueSuccess = league => ({
     league
 });
 
+export const deleteLeagueStarted = () => ({
+    type: 'DELETE_LEAGUE_STARTED'
+});
+
 export const deleteLeagueSuccess = _id => ({
     type: DELETE_LEAGUE_SUCCESS,
     _id
 });
 
-export const addTeamSuccess = (leagueId, team) => {
-    return ({
-        type: ADD_TEAM_SUCCESS,
-        leagueId,
-        team
-    });
-};
+export const addTeamStarted = () => ({
+    type: 'ADD_TEAM_STARTED'
+});
+
+export const addTeamSuccess = (leagueId, team) => ({
+    type: ADD_TEAM_SUCCESS,
+    leagueId,
+    team
+});
+
+export const editTeamNameStarted = () => ({
+    type: 'EDIT_TEAM_NAME_STARTED'
+});
 
 export const editTeamNameSuccess = (_id, teamName) => ({
     type: EDIT_TEAM_NAME_SUCCESS,
     _id,
     teamName
+});
+
+export const deleteTeamStarted = () => ({
+    type: 'DELETE_TEAM_STARTED'
 });
 
 export const deleteTeamSuccess = _id => ({
@@ -52,6 +70,7 @@ export const deleteTeamSuccess = _id => ({
 
 export function loadLeagues() {
     return function (dispatch) {
+        dispatch(loadAllLeaguesStarted());
         return leaguesApi.getAllLeagues()
             .then(leagues => {
                 dispatch(loadAllLeaguesSuccess(leagues));
@@ -62,8 +81,22 @@ export function loadLeagues() {
     };
 }
 
+export function deleteLeague(leagueId) {
+    return function (dispatch) {
+        dispatch(deleteLeagueStarted());
+        return leaguesApi.deleteLeague(leagueId)
+            .then(leagueId => {
+                dispatch(deleteLeagueSuccess(leagueId));
+            })
+            .catch(error => {
+                throw (error);
+            });
+    };
+}
+
 export function addTeam(leagueId, teamName) {
     return function (dispatch) {
+        dispatch(addTeamStarted());
         return leaguesApi.addNewTeam(teamName)
             .then(team => {
                 dispatch(addTeamSuccess(leagueId, team));
@@ -74,8 +107,9 @@ export function addTeam(leagueId, teamName) {
     };
 }
 
-export function editTeam(teamId, teamName) {
+export function editTeamName(teamId, teamName) {
     return function (dispatch) {
+        dispatch(editTeamNameStarted());
         return leaguesApi.editTeamName(teamId, teamName)
             .then(team => {
                 dispatch(editTeamNameSuccess(team._id, team.teamName));
@@ -88,13 +122,23 @@ export function editTeam(teamId, teamName) {
 
 export function deleteTeam(teamId) {
     return function (dispatch) {
+        dispatch(deleteTeamStarted());
         return leaguesApi.deleteTeam(teamId)
-            .then(team => {
-                dispatch(deleteTeamSuccess(team));
+            .then(teamId => {
+                dispatch(deleteTeamSuccess(teamId));
             })
             .catch(error => {
                 throw (error);
             });
     };
+}
+
+export function deleteField(field, id) {
+    switch (field) {
+        case 'team':
+            return deleteTeam(id);
+        case 'league':
+            return deleteLeague(id);
+    }
 }
 
