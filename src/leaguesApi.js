@@ -730,6 +730,17 @@ class LeaguesApi {
         });
     }
 
+    static editLeagueName(leagueId, leagueName) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(Object.assign(leagues.filter(league => league._id === leagueId)[0], {}, {
+                    leagueName
+                })
+                );
+            }, 1000);
+        });
+    }
+
     static deleteLeague(leagueId) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {

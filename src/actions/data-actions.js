@@ -19,6 +19,10 @@ export const loadAllLeaguesSuccess = leagues => ({
     leagues
 });
 
+export const editLeagueNameStarted = () => ({
+    type: 'EDIT_LEAGUE_NAME_STARTED'
+});
+
 export const editLeagueNameSuccess = (_id, leagueName) => ({
     type: EDIT_LEAGUE_NAME_SUCCESS,
     _id,
@@ -81,11 +85,25 @@ export function loadLeagues() {
     };
 }
 
+export function editLeagueName(leagueId, leagueName) {
+    return function (dispatch) {
+        dispatch(editLeagueNameStarted());
+        return leaguesApi.editLeagueName(leagueId, leagueName)
+            .then(league => {
+                debugger;
+                dispatch(editLeagueNameSuccess(league._id, league.leagueName));
+            })
+            .catch(error => {
+                throw (error);
+            });
+    };
+}
+
 export function deleteLeague(leagueId) {
     return function (dispatch) {
         dispatch(deleteLeagueStarted());
         return leaguesApi.deleteLeague(leagueId)
-            .then(leagueId => {
+            .then(league => {
                 dispatch(deleteLeagueSuccess(leagueId));
             })
             .catch(error => {
