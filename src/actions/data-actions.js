@@ -90,7 +90,6 @@ export function editLeagueName(leagueId, leagueName) {
         dispatch(editLeagueNameStarted());
         return leaguesApi.editLeagueName(leagueId, leagueName)
             .then(league => {
-                debugger;
                 dispatch(editLeagueNameSuccess(league._id, league.leagueName));
             })
             .catch(error => {

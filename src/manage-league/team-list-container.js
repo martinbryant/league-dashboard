@@ -28,7 +28,7 @@ const mapDispatchToProps = dispatch => {
         saveTeamName: e => {
             e.preventDefault();
             const { value, id } = e.target['0'];
-            dispatch(editTeamName(value, id));
+            dispatch(editTeamName(id, value));
             dispatch(disableEditMode());
         },
         deleteTeam: e => {
