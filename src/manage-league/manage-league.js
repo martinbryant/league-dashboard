@@ -15,11 +15,7 @@ const ManageLeague = ({ loading, league }) => {
         <div>
             {(loading)
                 ? (<LoadingSpinner />)
-                : (!league)
-                    ? <Redirect to={{
-                        pathname: '/'
-                    }} />
-                    : (<div>
+                : (<div>
                         <div>
                             <LeagueNameEditContainer />
                         </div>

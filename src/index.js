@@ -30,8 +30,6 @@ const initialState = {
 const app = document.getElementById('app');
 const store = configureStore(initialState);
 
-store.dispatch(loadLeagues());
-
 render(
     <Provider store={store}>
         <Router>
