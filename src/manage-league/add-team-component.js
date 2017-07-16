@@ -4,12 +4,12 @@ import { Table, ListGroup, ListGroupItem, Button, ButtonGroup, ButtonToolbar, Gl
 
 import EditForm from './edit-form-component';
 
-const AddTeamComponent = ({ inEditMode, editField, enableEditMode, saveTeamName, cancelEdit, isNameUnique }) => {
+const AddTeamComponent = ({ inEditMode, editField, enableEditMode, saveTeamName, cancelEdit, isNameUnique, selectedLeague }) => {
     return (
         <div>
             {(inEditMode && editField === 'newTeam')
                 ? <EditForm
-                    id="newTeam"
+                    id={selectedLeague}
                     defaultText=""
                     saveTextFieldData={saveTeamName}
                     resetEditMode={cancelEdit}
@@ -31,6 +31,7 @@ const AddTeamComponent = ({ inEditMode, editField, enableEditMode, saveTeamName,
 AddTeamComponent.propTypes = {
     inEditMode: PropTypes.bool.isRequired,
     editField: PropTypes.string.isRequired,
+    selectedLeague : PropTypes.string.isRequired,
     enableEditMode: PropTypes.func.isRequired,
     saveTeamName: PropTypes.func.isRequired,
     cancelEdit: PropTypes.func.isRequired,

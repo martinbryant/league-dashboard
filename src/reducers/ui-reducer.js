@@ -7,8 +7,19 @@ import {
     ENABLE_EDIT_MODE,
     DISABLE_EDIT_MODE,
     EDIT_TEAM_NAME_SUCCESS,
-    ADD_TEAM_SUCCESS
+    ADD_TEAM_SUCCESS,
+    LOAD_ALL_LEAGUES_SUCCESS
 } from '../constants';
+
+const selectedLeague = (state = '', action) => {
+    switch (action.type) {
+        case CHANGE_SELECTED_LEAGUE:
+            return action._id;
+        case LOAD_ALL_LEAGUES_SUCCESS:
+            return action.leagues[0]._id || '';
+        default: return state;
+    }
+};
 
 const sortColumn = (state = 'default', action) => {
     switch (action.type) {
@@ -90,7 +101,8 @@ const ui = combineReducers({
     inEditMode,
     editField,
     loading,
-    modal
+    modal,
+    selectedLeague
 });
 
 export default ui;

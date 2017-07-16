@@ -7,12 +7,11 @@ import { enableEditMode, disableEditMode, openDeleteModal } from '../actions/ui-
 import { editLeagueName } from '../actions/data-actions';
 
 const mapStateToProps = (state, ownProps) => {
-    const { inEditMode, editField } = state.ui;
+    const { inEditMode, editField, selectedLeague } = state.ui;
     const { leagues } = state.data;
-    const { leagueId } = ownProps.match.params;
     return {
-        leagueName: findLeagueNameForSelectedLeague(leagues, leagueId),
-        leagueId,
+        leagueName: findLeagueNameForSelectedLeague(leagues, selectedLeague),
+        selectedLeague,
         inEditMode,
         editField,
         isNameUnique: (name) => checkNameIsUnique(leagues, name, 'leagueName')
@@ -20,14 +19,14 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    const { leagueId } = ownProps.match.params;
     return {
         enableEditMode: (e) => {
             dispatch(enableEditMode(e.target.id));
         },
         saveLeagueName: (e) => {
             e.preventDefault();
-            let leagueName = e.target['0'].value;
+            const leagueName = e.target['0'].value;
+            const leagueId = e.target[0].id;
             dispatch(editLeagueName(leagueId, leagueName));
             dispatch(disableEditMode());
         },
@@ -45,6 +44,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     };
 };
 
-const LeagueNameEditContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(LeagueNameEditComponent));
+const LeagueNameEditContainer = connect(mapStateToProps, mapDispatchToProps)(LeagueNameEditComponent);
 
 export default LeagueNameEditContainer;

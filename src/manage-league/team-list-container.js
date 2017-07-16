@@ -6,16 +6,13 @@ import { enableEditMode, disableEditMode, openDeleteModal } from '../actions/ui-
 import { editTeamName, deleteTeam } from '../actions/data-actions';
 import { findTeamNamesAndIdForSelectedLeague, checkNameIsUnique } from '../selectors/data-selectors';
 
-// change hardcoded leagueId for ownProps
-
 const mapStateToProps = (state, ownProps) => {
-    const { inEditMode, editField, showModal } = state.ui;
+    const { inEditMode, editField, showModal, selectedLeague } = state.ui;
     const { leagues, teams } = state.data;
-    const { leagueId } = ownProps.match.params;
     return {
         inEditMode,
         editField,
-        teams: findTeamNamesAndIdForSelectedLeague(leagues, teams, leagueId),
+        teams: findTeamNamesAndIdForSelectedLeague(leagues, teams, selectedLeague),
         isNameUnique: (name) => checkNameIsUnique(teams, name, 'teamName'),
     };
 };
@@ -27,8 +24,9 @@ const mapDispatchToProps = dispatch => {
         },
         saveTeamName: e => {
             e.preventDefault();
-            const { value, id } = e.target['0'];
-            dispatch(editTeamName(id, value));
+            const leagueId = e.target['0'].id;
+            const teamNameText = e.target['0'].value;
+            dispatch(editTeamName(leagueId, teamNameText));
             dispatch(disableEditMode());
         },
         deleteTeam: e => {
@@ -49,6 +47,6 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-const TeamListContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(TeamListComponent));
+const TeamListContainer = connect(mapStateToProps, mapDispatchToProps)(TeamListComponent);
 
 export default TeamListContainer;

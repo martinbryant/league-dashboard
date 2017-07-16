@@ -7,15 +7,16 @@ import { withRouter, Redirect } from 'react-router-dom';
 import LeagueNameEditContainer from './league-name-edit-container';
 import TeamListConatiner from './team-list-container';
 import AddTeamContainer from './add-team-container';
-import LoadingSpinner from './loading-spinner';
+import LoadingSpinner from '../shared-components/loading-spinner';
 import { findLeague } from '../selectors/data-selectors';
 
-const ManageLeague = ({ loading, league }) => {
+const ManageLeague = ({ loading }) => {
     return (
         <div>
             {(loading)
-                ? (<LoadingSpinner />)
-                : (<div>
+                ? <LoadingSpinner />
+                : (
+                    <div>
                         <div>
                             <LeagueNameEditContainer />
                         </div>
@@ -31,19 +32,15 @@ const ManageLeague = ({ loading, league }) => {
     );
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     const { loading } = state.ui;
-    const { leagues } = state.data;
-    const { leagueId } = ownProps.match.params;
     return {
-        loading,
-        league: findLeague(leagues, leagueId)
+        loading
     };
 };
 
 ManageLeague.propTypes = {
-    loading: PropTypes.bool.isRequired,
-    league: PropTypes.object
+    loading: PropTypes.bool.isRequired
 };
 
-export default withRouter(connect(mapStateToProps)(ManageLeague));
+export default connect(mapStateToProps)(ManageLeague);

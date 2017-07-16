@@ -1,25 +1,18 @@
 import React from 'react';
 import { render } from 'react-dom';
-import {
-    BrowserRouter as Router,
-    Route,
-    Switch
-} from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { createBrowserHistory, startListener, Router } from 'redux-json-router';
 
 import configureStore from './store/configureStore';
-
+import routes from './routes/routes';
 
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
 
 import leaguesJson from './leaguesJson';
-import tableColumns from './home-page/table-columns';
-import App from './App';
-import HomePage from './home-page/home-page';
-import ManageLeague from './manage-league/manage-league';
-import { loadLeagues } from './actions/data-actions';
+import tableColumns from './league-tables/table-columns';
+import Layout from './layout';
 
 const initialState = {
     ui: {
@@ -27,13 +20,16 @@ const initialState = {
     }
 };
 
+const history = createBrowserHistory();
+const store = configureStore(history, initialState);
+startListener(history, store);
+
 const app = document.getElementById('app');
-const store = configureStore(initialState);
 
 render(
     <Provider store={store}>
-        <Router>
-            <App />
-        </Router>
+        <Layout>
+            <Router routes={routes} />
+        </Layout>
     </Provider>, app
 );

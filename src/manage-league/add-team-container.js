@@ -9,26 +9,27 @@ import { checkNameIsUnique } from '../selectors/data-selectors';
 // change hardcoded leagueId for ownProps
 
 const mapStateToProps = (state) => {
-    const { inEditMode, editField } = state.ui;
-    const { leagues, teams } = state.data;
+    const { inEditMode, editField, selectedLeague } = state.ui;
+    const { teams } = state.data;
     return {
         inEditMode,
         editField,
-        isNameUnique: (name) => checkNameIsUnique(teams, name, 'teamName')
+        isNameUnique: (name) => checkNameIsUnique(teams, name, 'teamName'),
+        selectedLeague
     };
 };
 
 //ownProps for leagueId
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    const { leagueId } = ownProps.match.params;
     return {
         enableEditMode: e => {
             dispatch(enableEditMode(e.target.id));
         },
         saveTeamName: e => {
             e.preventDefault();
-            let teamNameText = e.target['0'].value;
+            const leagueId = e.target['0'].id;
+            const teamNameText = e.target['0'].value;
             dispatch(addTeam(leagueId, teamNameText));
             dispatch(disableEditMode());
         },
@@ -38,6 +39,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     };
 };
 
-const AddTeamContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(AddTeamComponent));
+const AddTeamContainer = connect(mapStateToProps, mapDispatchToProps)(AddTeamComponent);
 
 export default AddTeamContainer;

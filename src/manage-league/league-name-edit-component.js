@@ -4,13 +4,13 @@ import { Button, ButtonToolbar, Glyphicon } from 'react-bootstrap';
 
 import EditForm from './edit-form-component';
 
-const LeagueNameEditComponent = ({ leagueName, leagueId, inEditMode, editField, saveLeagueName, enableEditMode, cancelEdit, isNameUnique, openModal }) => {
+const LeagueNameEditComponent = ({ leagueName, selectedLeague, inEditMode, editField, saveLeagueName, enableEditMode, cancelEdit, isNameUnique, openModal }) => {
     return (
         <div>
             <h3>Manage {leagueName}</h3>
             {(inEditMode && editField === 'leagueName')
                 ? <EditForm
-                    id="leagueName"
+                    id={selectedLeague}
                     defaultText={leagueName}
                     saveTextFieldData={saveLeagueName}
                     resetEditMode={cancelEdit}
@@ -27,7 +27,7 @@ const LeagueNameEditComponent = ({ leagueName, leagueId, inEditMode, editField, 
                             glyph="edit" /></Button>
                     <Button
                         type="button"
-                        id={leagueId}
+                        id={selectedLeague}
                         value={leagueName}
                         bsStyle="danger"
                         disabled={inEditMode}
@@ -41,7 +41,7 @@ const LeagueNameEditComponent = ({ leagueName, leagueId, inEditMode, editField, 
 
 LeagueNameEditComponent.propTypes = {
     leagueName: PropTypes.string.isRequired,
-    leagueId: PropTypes.string.isRequired,
+    selectedLeague: PropTypes.string.isRequired,
     inEditMode: PropTypes.bool.isRequired,
     editField: PropTypes.string.isRequired,
     saveLeagueName: PropTypes.func.isRequired,

@@ -8,9 +8,9 @@ import LeagueTableContainer from './league-table-container';
 import FixtureListContainer from './fixture-list-container';
 import ResultListContainer from './result-list-container';
 import LeagueControlsContainer from './league-controls-container';
-import LoadingSpinner from '../manage-league/loading-spinner';
+import LoadingSpinner from '../shared-components/loading-spinner';
 
-const HomePage = ({ loading }) => {
+const LeagueTables = ({ loading }) => {
     return (
         <div>
             {(loading)
@@ -30,7 +30,7 @@ const HomePage = ({ loading }) => {
     );
 };
 
-HomePage.propTypes = {
+LeagueTables.propTypes = {
     loading: PropTypes.bool.isRequired
 };
 
@@ -41,4 +41,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps)(LeagueTables);

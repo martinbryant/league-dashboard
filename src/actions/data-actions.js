@@ -1,3 +1,5 @@
+import { push } from 'redux-json-router';
+
 import {
     LOAD_ALL_LEAGUES_SUCCESS,
     EDIT_LEAGUE_NAME_SUCCESS,
@@ -104,6 +106,8 @@ export function deleteLeague(leagueId) {
         return leaguesApi.deleteLeague(leagueId)
             .then(league => {
                 dispatch(deleteLeagueSuccess(leagueId));
+                dispatch(push('/table'));
+                dispatch(loadLeagues());
             })
             .catch(error => {
                 throw (error);
