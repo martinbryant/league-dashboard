@@ -65,20 +65,9 @@ describe('data reducer tests', () => {
         const defaultState = {
             leagues: [],
             teams: [],
-            fixtures: [],
-            selectedLeague: ''
+            fixtures: []
         };
         expect(data(undefined, {})).toEqual(defaultState);
-    });
-    it('should handle CHANGE_SELECTED_LEAGUE', () => {
-        const mockAction = {
-            type: CHANGE_SELECTED_LEAGUE,
-            _id: 'id'
-        };
-        const newState = {
-            selectedLeague: 'id'
-        };
-        expect(data(undefined, mockAction)).toInclude(newState);
     });
     it('should handle LOAD_ALL_LEAGUES_SUCCESS', () => {
         const mockLeague = [
@@ -189,8 +178,7 @@ describe('data reducer tests', () => {
                 {
                     _id: 'FixtureId4'
                 }
-            ],
-            selectedLeague: ''
+            ]
         };
         expect(data(undefined, mockAction)).toEqual(newState);
     });
@@ -217,7 +205,7 @@ describe('data reducer tests', () => {
         const oldState = mockOldState;
         const mockAction = {
             type: ADD_TEAM_SUCCESS,
-            _id: 'LeagueId1',
+            leagueId: 'LeagueId1',
             team: {
                 _id: 'TeamId5',
                 teamName: 'Team5'

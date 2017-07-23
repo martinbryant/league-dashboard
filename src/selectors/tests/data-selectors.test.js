@@ -57,96 +57,120 @@ describe('data selectors', () => {
     it('should handle findFixturesForSelectedLeague with data', () => {
         const mockLeague = [{
             _id: 'LeagueId1',
-            fixtures: [{
-                played: true,
-                _id: 'FixtureId1'
-            },
-            {
-                played: false,
-                _id: 'FixtureId2'
-            }]
+            fixtures: [
+                'FixtureId1'
+                ,
+                'FixtureId2'
+            ]
+        }];
+        const mockFixtures = [{
+            played: true,
+            _id: 'FixtureId1'
+        },
+        {
+            played: false,
+            _id: 'FixtureId2'
         }];
         const result = [
             {
                 played: false,
                 _id: 'FixtureId2'
             }];
-        expect(selector.findFixturesForSelectedLeague(mockLeague, 'LeagueId1')).toEqual(result);
+        expect(selector.findFixturesForSelectedLeague(mockLeague, mockFixtures, 'LeagueId1')).toEqual(result);
     });
     it('should handle findFixturesForSelectedLeague with no leagues', () => {
         const mockLeague = [];
+        const mockFixtures = [];
         const result = [];
-        expect(selector.findFixturesForSelectedLeague(mockLeague, '')).toEqual(result);
+        expect(selector.findFixturesForSelectedLeague(mockLeague, mockFixtures, '')).toEqual(result);
     });
     it('should handle findFixturesForSelectedLeague with no fixtures', () => {
         const mockLeague = [{
             _id: 'LeagueId1',
             fixtures: []
         }];
+        const mockFixtures = [];
         const result = [];
-        expect(selector.findFixturesForSelectedLeague(mockLeague, 'LeagueId1')).toEqual(result);
+        expect(selector.findFixturesForSelectedLeague(mockLeague, mockFixtures, 'LeagueId1')).toEqual(result);
     });
     it('should handle findFixturesForSelectedLeague with fixtures but no unplayed', () => {
         const mockLeague = [{
             _id: 'LeagueId1',
-            fixtures: [{
-                played: true,
-                _id: 'FixtureId1'
-            },
-            {
-                played: true,
-                _id: 'FixtureId2'
-            }]
+            fixtures: [
+                'FixtureId1'
+                ,
+                'FixtureId2'
+            ]
+        }];
+        const mockFixtures = [{
+            played: true,
+            _id: 'FixtureId1'
+        },
+        {
+            played: true,
+            _id: 'FixtureId2'
         }];
         const result = [];
-        expect(selector.findFixturesForSelectedLeague(mockLeague, 'LeagueId1')).toEqual(result);
+        expect(selector.findFixturesForSelectedLeague(mockLeague, mockFixtures, 'LeagueId1')).toEqual(result);
     });
     it('should handle findResultsForSelectedLeague with data', () => {
         const mockLeague = [{
             _id: 'LeagueId1',
-            fixtures: [{
-                played: true,
-                _id: 'FixtureId1'
-            },
-            {
-                played: false,
-                _id: 'FixtureId2'
-            }]
+            fixtures: [
+                'FixtureId1'
+                ,
+                'FixtureId2'
+            ]
+        }];
+        const mockFixtures = [{
+            played: true,
+            _id: 'FixtureId1'
+        },
+        {
+            played: false,
+            _id: 'FixtureId2'
         }];
         const result = [
             {
                 played: true,
                 _id: 'FixtureId1'
             }];
-        expect(selector.findResultsForSelectedLeague(mockLeague, 'LeagueId1')).toEqual(result);
+        expect(selector.findResultsForSelectedLeague(mockLeague, mockFixtures, 'LeagueId1')).toEqual(result);
     });
     it('should handle findResultsForSelectedLeague with no leagues', () => {
         const mockLeague = [];
+        const mockFixtures = [];
         const result = [];
-        expect(selector.findResultsForSelectedLeague(mockLeague, '')).toEqual(result);
+        expect(selector.findResultsForSelectedLeague(mockLeague, mockFixtures, '')).toEqual(result);
     });
     it('should handle findResultsForSelectedLeague with no fixtures', () => {
         const mockLeague = [{
             _id: 'LeagueId1',
             fixtures: []
         }];
+        const mockFixtures = [];
         const result = [];
-        expect(selector.findResultsForSelectedLeague(mockLeague, 'LeagueId1')).toEqual(result);
+        expect(selector.findResultsForSelectedLeague(mockLeague, mockFixtures, 'LeagueId1')).toEqual(result);
     });
     it('should handle findResultsForSelectedLeague with fixtures but no results', () => {
         const mockLeague = [{
             _id: 'LeagueId1',
-            fixtures: [{
-                played: false,
-                _id: 'FixtureId1'
-            },
-            {
-                played: false,
-                _id: 'FixtureId2'
-            }]
+            fixtures: [
+                'FixtureId1'
+                ,
+                'FixtureId2'
+            ]
+        }];
+        const mockFixtures = [{
+            played: false,
+            _id: 'FixtureId1'
+        },
+        {
+            played: false,
+            _id: 'FixtureId2'
         }];
         const result = [];
-        expect(selector.findResultsForSelectedLeague(mockLeague, 'LeagueId1')).toEqual(result);
+        expect(selector.findResultsForSelectedLeague(mockLeague, mockFixtures, 'LeagueId1')).toEqual(result);
     });
     it('should handle findLeagueNameForSelectedLeague and return leagueName', () => {
         const mockLeague = [{

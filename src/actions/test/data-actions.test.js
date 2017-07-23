@@ -45,15 +45,17 @@ describe('data actions', () => {
         expect(actions.deleteLeagueSuccess(mockId)).toEqual(expectedAction);
     });
     it('should create an action to add a team', () => {
+        const mockLeagueId = 'League Id';
         const mockTeam = {
             teamName: 'New Team',
             _id: 'TeamId'
         };
         const expectedAction = {
             type: 'ADD_TEAM_SUCCESS',
+            leagueId : mockLeagueId,
             team: mockTeam
         };
-        expect(actions.addTeamSuccess(mockTeam)).toEqual(expectedAction);
+        expect(actions.addTeamSuccess(mockLeagueId, mockTeam)).toEqual(expectedAction);
     });
     it('should create an action to edit team name', () => {
         const mockId = 'Team Id';

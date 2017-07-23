@@ -16,20 +16,25 @@ describe('ui reducer tests', () => {
             sortColumn: 'default',
             sortOrder: 'desc',
             inEditMode: false,
-            editField: ''
+            editField: '',
+            loading: false,
+            modal: { isOpen: false },
+            selectedLeague:''
         };
-        expect(ui(undefined, {})).toEqual(defaultState);
+        expect(ui(undefined, {type : 'init'})).toEqual(defaultState);
     });
     it('should handle CHANGE_SELECTED_LEAGUE', () => {
         const oldState = {
-            sortColumn: 'not default'
+            sortColumn: 'not default',
+            selectedLeague : ''
         };
         const mockAction = {
             type: CHANGE_SELECTED_LEAGUE,
             _id: 'id'
         };
         const newState = {
-            sortColumn: 'default'
+            sortColumn: 'default',
+            selectedLeague: 'id'
         };
         expect(ui(oldState, mockAction)).toInclude(newState);
     });

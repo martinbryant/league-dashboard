@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
-import CoreButton from '../shared-components/core/CoreButton';
+import CoreButton from '../shared/core/CoreButton';
 
 const LeagueControlsComponent = ({selectedLeague, hasLeagues, addLeague, editLeague}) => {
     return (

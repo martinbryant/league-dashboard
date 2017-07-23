@@ -17,11 +17,18 @@ const mockTableColumns = [
 ];
 
 const setup = (setupProps) => {
-    const { tableColumns = mockTableColumns, sortColumn = 'default', onSortColumnChange = () => { } } = setupProps;
+    const {
+        tableColumns = mockTableColumns,
+        sortOrder = 'desc',
+        sortColumn = 'default',
+        onSortOrderChange = () => { },
+        onSortColumnChange = () => { } } = setupProps;
     const defaultProps = {
         tableColumns,
+        sortOrder,
         sortColumn,
-        onSortColumnChange
+        onSortOrderChange,
+        onSortColumnChange,
     };
     return shallow(<LeagueTableHeaderComponent {...defaultProps} />);
 };

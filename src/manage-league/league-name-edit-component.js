@@ -4,7 +4,16 @@ import { Button, ButtonToolbar, Glyphicon } from 'react-bootstrap';
 
 import EditForm from './edit-form-component';
 
-const LeagueNameEditComponent = ({ leagueName, selectedLeague, inEditMode, editField, saveLeagueName, enableEditMode, cancelEdit, isNameUnique, openModal }) => {
+const LeagueNameEditComponent = ({
+    leagueName,
+    selectedLeague,
+    inEditMode,
+    editField,
+    saveLeagueName,
+    enableEditMode,
+    cancelEdit,
+    isNameUnique,
+    openModal }) => {
     return (
         <div>
             <h3>Manage {leagueName}</h3>
