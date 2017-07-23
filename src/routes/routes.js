@@ -4,6 +4,7 @@ import LeagueTables from '../league-tables/league-tables';
 import ManageLeague from '../manage-league/manage-league';
 import WithLoading from '../shared/with-loading';
 import Redirect from '../shared/redirect';
+import LoginPage from '../login-page/login-page';
 
 const LeagueTablesWithLoading = WithLoading(LeagueTables);
 const ManageLeagueWithLoading = WithLoading(ManageLeague);
@@ -12,6 +13,10 @@ const routes = [
     {
         path: '/',
         load: () => Promise.resolve(Redirect)
+    },
+    {
+        path: '/login',
+        load: () => Promise.resolve(LoginPage)
     },
     {
         path: '/table',

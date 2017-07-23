@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import LoginBar from './login-bar/login-bar';
 import { loadLeagues } from './actions/data-actions';
 
 class Layout extends Component {
@@ -16,7 +17,10 @@ class Layout extends Component {
 
     render() {
         return (
-            this.props.children
+            <div>
+                <LoginBar />
+                {this.props.children}
+            </div>
         );
     }
 }
