@@ -2,8 +2,11 @@ import React from 'react';
 
 import LeagueTables from '../league-tables/league-tables';
 import ManageLeague from '../manage-league/manage-league';
-import Redirect from '../shared-components/redirect';
+import WithLoading from '../shared/with-loading';
+import Redirect from '../shared/redirect';
 
+const LeagueTablesWithLoading = WithLoading(LeagueTables);
+const ManageLeagueWithLoading = WithLoading(ManageLeague);
 
 const routes = [
     {
@@ -12,7 +15,7 @@ const routes = [
     },
     {
         path: '/table',
-        load: () => Promise.resolve(LeagueTables),
+        load: () => Promise.resolve(LeagueTablesWithLoading),
         children: [
             {
                 path: '/:leagueId',
@@ -22,11 +25,11 @@ const routes = [
     },
     {
         path: '/league',
-        load: () => Promise.resolve(ManageLeague),
+        load: () => Promise.resolve(ManageLeagueWithLoading),
         children: [
             {
                 path: '/:leagueId',
-                load: () => Promise.resolve(ManageLeague)
+                load: () => Promise.resolve(ManageLeagueWithLoading)
             },
         ]
     },
