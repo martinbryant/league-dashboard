@@ -3,7 +3,9 @@ import {
     CHANGE_SELECTED_LEAGUE,
     TOGGLE_SORT_ORDER,
     ENABLE_EDIT_MODE,
-    DISABLE_EDIT_MODE
+    DISABLE_EDIT_MODE,
+    SHOW_DELETE_MODAL,
+    CLOSE_DELETE_MODAL
 } from '../constants';
 
 export const changeSelectedLeague = _id => ({
@@ -30,23 +32,14 @@ export const disableEditMode = () => ({
     type: DISABLE_EDIT_MODE
 });
 
-export const newName = name => ({
-    type: 'UPDATE_NEW_NAME',
-    name
-});
-
-export const enableLoading = () => ({
-    type: 'LOADING'
-});
-
 export const openDeleteModal = (id, name, field) => ({
-    type: 'SHOW_DELETE_MODAL',
+    type: SHOW_DELETE_MODAL,
     id,
     name,
     field
 });
 
 export const closeDeleteModal = id => ({
-    type: 'CLOSE_DELETE_MODAL',
+    type: CLOSE_DELETE_MODAL,
     id
 });

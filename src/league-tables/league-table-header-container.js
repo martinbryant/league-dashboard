@@ -13,16 +13,10 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onSortColumnChange: (e) => {
-            dispatch(sortTableByColumn(e.target.id));
-        },
-        onSortOrderChange: (e) => {
-            dispatch(toggleSortOrder(e.target.id));
-        }
-    };
-};
+const mapDispatchToProps = (dispatch) => ({
+    onSortColumnChange: (e) => dispatch(sortTableByColumn(e.target.id)),
+    onSortOrderChange: (e) => dispatch(toggleSortOrder(e.target.id))
+});
 
 const LeagueTableHeaderContainer = connect(mapStateToProps, mapDispatchToProps)(LeagueTableHeaderComponent);
 

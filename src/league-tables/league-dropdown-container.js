@@ -17,13 +17,9 @@ export const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onLeagueChange: (e) => {
-            dispatch(changeSelectedLeague(e.target.value));
-        }
-    };
-};
+const mapDispatchToProps = (dispatch) => ({
+    onLeagueChange: (e) => dispatch(changeSelectedLeague(e.target.value))
+});
 
 const LeagueDropdownContainer = connect(mapStateToProps, mapDispatchToProps)(LeagueDropdownComponent);
 

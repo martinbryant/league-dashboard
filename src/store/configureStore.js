@@ -14,7 +14,8 @@ const reducer = combineReducers({
     ui
 });
 
-const middleware = history => composeWithDevTools(applyMiddleware(routerMiddleware(history), thunk, reduxImmutableStateInvariant()));
+const middleware = history => (
+    composeWithDevTools(applyMiddleware(routerMiddleware(history), thunk, reduxImmutableStateInvariant())));
 
 export default function configureStore(history, initialState) {
     return createStore(reducer, initialState, middleware(history));

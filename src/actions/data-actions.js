@@ -7,13 +7,20 @@ import {
     DELETE_LEAGUE_SUCCESS,
     ADD_TEAM_SUCCESS,
     EDIT_TEAM_NAME_SUCCESS,
-    DELETE_TEAM_SUCCESS
+    DELETE_TEAM_SUCCESS,
+    LOAD_ALL_LEAGUES_STARTED,
+    EDIT_LEAGUE_NAME_STARTED,
+    DELETE_LEAGUE_STARTED,
+    ADD_TEAM_STARTED,
+    EDIT_TEAM_NAME_STARTED,
+    DELETE_TEAM_STARTED
+
 } from '../constants';
 
 import leaguesApi from '../leaguesApi';
 
 export const loadAllLeaguesStarted = () => ({
-    type: 'LOAD_ALL_LEAGUES_STARTED'
+    type: LOAD_ALL_LEAGUES_STARTED
 });
 
 export const loadAllLeaguesSuccess = leagues => ({
@@ -22,7 +29,7 @@ export const loadAllLeaguesSuccess = leagues => ({
 });
 
 export const editLeagueNameStarted = () => ({
-    type: 'EDIT_LEAGUE_NAME_STARTED'
+    type: EDIT_LEAGUE_NAME_STARTED
 });
 
 export const editLeagueNameSuccess = (_id, leagueName) => ({
@@ -37,7 +44,7 @@ export const addLeagueSuccess = league => ({
 });
 
 export const deleteLeagueStarted = () => ({
-    type: 'DELETE_LEAGUE_STARTED'
+    type: DELETE_LEAGUE_STARTED
 });
 
 export const deleteLeagueSuccess = _id => ({
@@ -46,7 +53,7 @@ export const deleteLeagueSuccess = _id => ({
 });
 
 export const addTeamStarted = () => ({
-    type: 'ADD_TEAM_STARTED'
+    type: ADD_TEAM_STARTED
 });
 
 export const addTeamSuccess = (leagueId, team) => ({
@@ -56,7 +63,7 @@ export const addTeamSuccess = (leagueId, team) => ({
 });
 
 export const editTeamNameStarted = () => ({
-    type: 'EDIT_TEAM_NAME_STARTED'
+    type: EDIT_TEAM_NAME_STARTED
 });
 
 export const editTeamNameSuccess = (_id, teamName) => ({
@@ -66,7 +73,7 @@ export const editTeamNameSuccess = (_id, teamName) => ({
 });
 
 export const deleteTeamStarted = () => ({
-    type: 'DELETE_TEAM_STARTED'
+    type: DELETE_TEAM_STARTED
 });
 
 export const deleteTeamSuccess = _id => ({

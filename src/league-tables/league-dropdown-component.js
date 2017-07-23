@@ -22,5 +22,4 @@ LeagueDropDownComponent.propTypes = {
     onLeagueChange: PropTypes.func.isRequired
 };
 
-
 export default LeagueDropDownComponent;

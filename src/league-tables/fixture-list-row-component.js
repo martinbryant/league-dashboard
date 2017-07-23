@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FixtureListRowComponent = ({homeTeamName, awayTeamName}) => {
-    return (
-        <li>{homeTeamName} v {awayTeamName}</li>
-    );
-};
+const FixtureListRowComponent = ({ homeTeamName, awayTeamName }) => (
+    <li>{homeTeamName} v {awayTeamName}</li>
+);
 
 FixtureListRowComponent.propTypes = {
     homeTeamName: PropTypes.string.isRequired,

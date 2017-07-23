@@ -5,20 +5,18 @@ import { Table } from 'react-bootstrap';
 import LeagueTableHeaderContainer from './league-table-header-container';
 import LeagueTableRowComponent from './league-table-row-component';
 
-const LeagueTableComponent = ({teams}) => {
-    return (
-        <Table striped bordered condensed hover>
-            <thead>
-                <LeagueTableHeaderContainer />
-            </thead>
-            <tbody>
-                {teams.map(team => {
-                    return <LeagueTableRowComponent key={team._id} {...team} />;
-                })}
-            </tbody>
-        </Table>
-    );
-};
+const LeagueTableComponent = ({ teams }) => (
+    <Table striped bordered condensed hover>
+        <thead>
+            <LeagueTableHeaderContainer />
+        </thead>
+        <tbody>
+            {teams.map(team => {
+                return <LeagueTableRowComponent key={team._id} {...team} />;
+            })}
+        </tbody>
+    </Table>
+);
 
 LeagueTableComponent.propTypes = {
     teams: PropTypes.arrayOf(PropTypes.shape({
