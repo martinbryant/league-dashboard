@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import LoadingSpinner from './shared-components/loading-spinner';
 import { loadLeagues } from './actions/data-actions';
 
 class Layout extends Component {
@@ -24,16 +23,13 @@ class Layout extends Component {
 
 Layout.propTypes = {
     children: PropTypes.node.isRequired,
-    loading: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired,
-    hasLeagues : PropTypes.bool.isRequired
+    hasLeagues: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => {
-    const { loading } = state.ui;
     const { leagues } = state.data;
     return {
-        loading,
         hasLeagues: leagues.length > 1
     };
 };
