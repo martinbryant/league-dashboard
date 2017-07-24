@@ -2,18 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import LoginFormComponent from './login-form-component';
+import { loginUser } from '../actions/login-actions';
 
-const mapStateToProps = state => null;
+const mapStateToProps = state => ({
+    loading: state.login.loading
+});
 
 const mapDispatchToProps = dispatch => ({
     processLogin: e => {
         const userName = e.target['userName'].value;
         const password = e.target['password'].value;
         e.preventDefault();
-        //dispatch(login);
+        dispatch(loginUser(userName, password));
     }
 });
 
-const LoginFormContainer = connect(null, mapDispatchToProps)(LoginFormComponent);
+const LoginFormContainer = connect(mapStateToProps, mapDispatchToProps)(LoginFormComponent);
 
 export default LoginFormContainer;

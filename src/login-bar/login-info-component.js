@@ -4,8 +4,8 @@ import { Button } from 'react-bootstrap';
 
 const LoginInfoComponent = ({ userName, logIn, logOut }) => (
     (userName)
-    ? <h4>Logged in as {userName} <Button onClick={logOut}>Log Out</Button></h4>
-    : <Button onClick={logIn}>Log In</Button>
+        ? <h4>Logged in as {userName} <Button bsSize="small" onClick={logOut}>Log Out</Button></h4>
+        : <Button bsSize="small" onClick={logIn}>Log In</Button>
 );
 
 LoginInfoComponent.propTypes = {

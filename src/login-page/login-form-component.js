@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Form, FormGroup, FormControl, ControlLabel, ButtonGroup, Button, HelpBlock } from 'react-bootstrap';
 
 class LoginFormComponent extends Component {
@@ -72,7 +73,7 @@ class LoginFormComponent extends Component {
     render() {
         const { onTextChange, clearFields, isSubmitDisabled } = this;
         const { userName, password, userNameValidation, passwordValidation, errorMessage } = this.state;
-        const { processLogin } = this.props;
+        const { processLogin, loading } = this.props;
         return (
             <div>
                 <Form onSubmit={processLogin} onReset={clearFields}>
@@ -87,8 +88,10 @@ class LoginFormComponent extends Component {
                         <FormControl.Feedback />
                     </FormGroup>
                     {'  '}
-                    <Button type="submit" bsStyle="success"
-                        disabled={isSubmitDisabled(userNameValidation, passwordValidation)}>Submit</Button>
+                    <Button type="submit"
+                        bsStyle="success"
+                        disabled={isSubmitDisabled(userNameValidation, passwordValidation)}>
+                        {(loading) ? 'Logging in' : 'Submit'}</Button>
                     {'  '}
                     <Button type="reset" bsStyle="danger">Reset</Button>
                     {' '}
@@ -98,5 +101,10 @@ class LoginFormComponent extends Component {
             </div>);
     }
 }
+
+LoginFormComponent.propTypes = {
+    processLogin: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired
+};
 
 export default LoginFormComponent;

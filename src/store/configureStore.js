@@ -4,15 +4,16 @@ import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import thunk from 'redux-thunk';
 import { routerReducer, routerMiddleware } from 'redux-json-router';
 
-import app from '../reducers/app-reducer';
 import data from '../reducers/data-reducer';
 import ui from '../reducers/ui-reducer';
-import leaguesApi from '../leaguesApi';
+import login from '../reducers/login-reducer';
+import leaguesApi from '../api/leaguesApi';
 
 const reducer = combineReducers({
     router: routerReducer,
     data,
-    ui
+    ui,
+    login
 });
 
 const middleware = history => (
