@@ -7,6 +7,7 @@ import { routerReducer, routerMiddleware } from 'redux-json-router';
 import app from '../reducers/app-reducer';
 import data from '../reducers/data-reducer';
 import ui from '../reducers/ui-reducer';
+import leaguesApi from '../leaguesApi';
 
 const reducer = combineReducers({
     router: routerReducer,
@@ -15,7 +16,10 @@ const reducer = combineReducers({
 });
 
 const middleware = history => (
-    composeWithDevTools(applyMiddleware(routerMiddleware(history), thunk, reduxImmutableStateInvariant())));
+    composeWithDevTools(applyMiddleware(
+        routerMiddleware(history),
+        thunk.withExtraArgument(leaguesApi),
+        reduxImmutableStateInvariant())));
 
 export default function configureStore(history, initialState) {
     return createStore(reducer, initialState, middleware(history));

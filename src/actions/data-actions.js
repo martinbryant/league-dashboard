@@ -17,8 +17,6 @@ import {
 
 } from '../constants';
 
-import leaguesApi from '../leaguesApi';
-
 export const loadAllLeaguesStarted = () => ({
     type: LOAD_ALL_LEAGUES_STARTED
 });
@@ -82,7 +80,7 @@ export const deleteTeamSuccess = _id => ({
 });
 
 export function loadLeagues() {
-    return function (dispatch) {
+    return function (dispatch, getState, leaguesApi) {
         dispatch(loadAllLeaguesStarted());
         return leaguesApi.getAllLeagues()
             .then(leagues => {
@@ -95,7 +93,7 @@ export function loadLeagues() {
 }
 
 export function editLeagueName(leagueId, leagueName) {
-    return function (dispatch) {
+    return function (dispatch, getState, leaguesApi) {
         dispatch(editLeagueNameStarted());
         return leaguesApi.editLeagueName(leagueId, leagueName)
             .then(league => {
@@ -108,7 +106,7 @@ export function editLeagueName(leagueId, leagueName) {
 }
 
 export function deleteLeague(leagueId) {
-    return function (dispatch) {
+    return function (dispatch, getState, leaguesApi) {
         dispatch(deleteLeagueStarted());
         return leaguesApi.deleteLeague(leagueId)
             .then(league => {
@@ -123,7 +121,7 @@ export function deleteLeague(leagueId) {
 }
 
 export function addTeam(leagueId, teamName) {
-    return function (dispatch) {
+    return function (dispatch, getState, leaguesApi) {
         dispatch(addTeamStarted());
         return leaguesApi.addNewTeam(teamName)
             .then(team => {
@@ -136,7 +134,7 @@ export function addTeam(leagueId, teamName) {
 }
 
 export function editTeamName(teamId, teamName) {
-    return function (dispatch) {
+    return function (dispatch, getState, leaguesApi) {
         dispatch(editTeamNameStarted());
         return leaguesApi.editTeamName(teamId, teamName)
             .then(team => {
@@ -149,7 +147,7 @@ export function editTeamName(teamId, teamName) {
 }
 
 export function deleteTeam(teamId) {
-    return function (dispatch) {
+    return function (dispatch, getState, leaguesApi) {
         dispatch(deleteTeamStarted());
         return leaguesApi.deleteTeam(teamId)
             .then(teamId => {
