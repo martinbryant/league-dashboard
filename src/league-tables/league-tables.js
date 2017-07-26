@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
+import DocumentTitle from 'react-document-title';
 
 import LeagueDropdownContainer from './league-dropdown-container';
 import LeagueTableContainer from './league-table-container';
@@ -9,6 +10,7 @@ import LeagueControlsContainer from './league-controls-container';
 
 const LeagueTables = () => (
     <div>
+        <DocumentTitle title="Tables" />
         <LeagueDropdownContainer />
         <Grid>
             <Row className="show-grid">

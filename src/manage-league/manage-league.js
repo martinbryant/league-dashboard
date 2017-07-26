@@ -5,20 +5,19 @@ import LeagueNameEditContainer from './league-name-edit-container';
 import TeamListConatiner from './team-list-container';
 import AddTeamContainer from './add-team-container';
 
-const ManageLeague = () => {
-    return (
+const ManageLeague = () => (
+    <div>
         <div>
-            <div>
-                <LeagueNameEditContainer />
-            </div>
-            <Grid>
-                <Row className="show-grid">
-                    <Col md={6}><TeamListConatiner />
-                        <AddTeamContainer /></Col>
-                    <Col md={6}> </Col>
-                </Row>
-            </Grid>
-        </div>);
-};
+            <LeagueNameEditContainer />
+        </div>
+        <Grid>
+            <Row className="show-grid">
+                <Col md={6}><TeamListConatiner />
+                    <AddTeamContainer /></Col>
+                <Col md={6}> </Col>
+            </Row>
+        </Grid>
+    </div>
+);
 
 export default ManageLeague;

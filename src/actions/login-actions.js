@@ -24,7 +24,7 @@ export const loginUser = (userName, password) => (dispatch) => {
     dispatch(loginUserStarted());
     return loginApi.loginUser(userName, password)
         .then(user => (user)
-            ? dispatch(loginUserSuccess(user)) && dispatch(goBack())
+            ? dispatch(loginUserSuccess(user)) & dispatch(goBack())
             : dispatch(loginUserError(user)))
         .catch(error => { throw (error); });
 };

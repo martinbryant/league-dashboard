@@ -6,8 +6,10 @@ import { logoutUser } from '../actions/login-actions';
 
 const mapStateToProps = state => {
     const { userName } = state.login;
+    const { pathname } = state.router;
     return {
-        userName
+        userName,
+        pathname
     };
 };
 
@@ -16,6 +18,14 @@ const mapDispatchToProps = dispatch => ({
     logOut: () => dispatch(logoutUser()) && dispatch(push('/'))
 });
 
-const LoginInfoContainer = connect(mapStateToProps, mapDispatchToProps)(LoginInfoComponent);
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    const { pathname } = stateProps;
+    const { logIn } = dispatchProps;
+    return Object.assign({}, stateProps, dispatchProps, {
+        logInIfNotThere: () => (pathname !== '/login') && logIn()
+    });
+};
+
+const LoginInfoContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(LoginInfoComponent);
 
 export default LoginInfoContainer;

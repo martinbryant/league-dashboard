@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const userName = (state = '', action) => {
+const userName = (state = sessionStorage.getItem('user') || '', action) => {
     switch (action.type) {
         case 'LOGIN_USER_SUCCESS':
             return action.userName;

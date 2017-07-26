@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonToolbar, Glyphicon } from 'react-bootstrap';
+import DocumentTitle from 'react-document-title';
 
 import EditForm from './edit-form-component';
 
@@ -13,9 +14,9 @@ const LeagueNameEditComponent = ({
     enableEditMode,
     cancelEdit,
     isNameUnique,
-    openModal }) => {
-    return (
+    openModal }) => (
         <div>
+            <DocumentTitle title={`Manage ${leagueName}`} />
             <h3>Manage {leagueName}</h3>
             {(inEditMode && editField === 'leagueName')
                 ? <EditForm
@@ -46,7 +47,6 @@ const LeagueNameEditComponent = ({
                 </ButtonToolbar>}
         </div>
     );
-};
 
 LeagueNameEditComponent.propTypes = {
     leagueName: PropTypes.string.isRequired,

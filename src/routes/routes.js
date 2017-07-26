@@ -1,18 +1,14 @@
 import React from 'react';
 
-import LeagueTables from '../league-tables/league-tables';
-import ManageLeague from '../manage-league/manage-league';
-import WithLoading from '../shared/with-loading';
-import Redirect from '../shared/redirect';
+import HomePage from '../home-page/home-page';
 import LoginPage from '../login-page/login-page';
-
-const LeagueTablesWithLoading = WithLoading(LeagueTables);
-const ManageLeagueWithLoading = WithLoading(ManageLeague);
+import EnhancedLeagueTables from '../league-tables/enhanced-league-tables';
+import EnhancedManageLeague from '../manage-league/enhanced-manage-league';
 
 const routes = [
     {
         path: '/',
-        load: () => Promise.resolve(Redirect)
+        load: () => Promise.resolve(HomePage)
     },
     {
         path: '/login',
@@ -20,27 +16,27 @@ const routes = [
     },
     {
         path: '/table',
-        load: () => Promise.resolve(LeagueTablesWithLoading),
+        load: () => Promise.resolve(EnhancedLeagueTables),
         children: [
             {
                 path: '/:leagueId',
-                load: () => Promise.resolve(LeagueTables)
+                load: () => Promise.resolve(EnhancedLeagueTables)
             },
         ]
     },
     {
         path: '/league',
-        load: () => Promise.resolve(ManageLeagueWithLoading),
+        load: () => Promise.resolve(EnhancedManageLeague),
         children: [
             {
                 path: '/:leagueId',
-                load: () => Promise.resolve(ManageLeagueWithLoading)
+                load: () => Promise.resolve(EnhancedManageLeague)
             },
         ]
     },
     {
         path: '*',
-        load : () => Promise.resolve(() => (<div>Not Found</div>))
+        load: () => Promise.resolve(() => (<div>Not Found</div>))
     }
 ];
 

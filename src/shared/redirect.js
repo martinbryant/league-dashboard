@@ -9,8 +9,8 @@ class Redirect extends Component {
     }
 
     componentDidMount() {
-        const { dispatch, redirectPath } = this.props;
-        dispatch(push(redirectPath));
+        const { dispatch, path } = this.props;
+        dispatch(push(path));
     }
 
     render() {
@@ -19,18 +19,8 @@ class Redirect extends Component {
 }
 
 Redirect.propTypes = {
-    redirectPath: PropTypes.string,
+    path: PropTypes.string,
     dispatch: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => {
-    const { pathname } = state.router;
-    switch (pathname) {
-        case ('/'):
-            return {
-                redirectPath: '/table'
-            };
-    }
-};
-
-export default connect(mapStateToProps)(Redirect);
+export default connect(null)(Redirect);

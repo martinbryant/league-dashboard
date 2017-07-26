@@ -16,11 +16,23 @@ const reducer = combineReducers({
     login
 });
 
+const sessionMiddleware = store => next => action => {
+    if (action.type === 'LOGIN_USER_SUCCESS') {
+        sessionStorage.setItem('user', action.userName);
+    }
+    if (action.type === 'LOGOUT_USER') {
+        sessionStorage.removeItem('user');
+    }
+    next(action);
+};
+
 const middleware = history => (
     composeWithDevTools(applyMiddleware(
         routerMiddleware(history),
         thunk.withExtraArgument(leaguesApi),
-        reduxImmutableStateInvariant())));
+        reduxImmutableStateInvariant(),
+        sessionMiddleware
+    )));
 
 export default function configureStore(history, initialState) {
     return createStore(reducer, initialState, middleware(history));
