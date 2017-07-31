@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Form, FormGroup, FormControl, ControlLabel, ButtonGroup, Button, HelpBlock } from 'react-bootstrap';
+import { ButtonToolbar } from 'react-bootstrap';
+import FormField from '../shared/form-field';
+import SubmitButton from '../shared/submit-button';
+import ResetButton from '../shared/reset-button';
+
 
 class LoginFormComponent extends Component {
     constructor(props) {
@@ -76,28 +80,37 @@ class LoginFormComponent extends Component {
         const { processLogin, loading } = this.props;
         return (
             <div>
-                <Form onSubmit={processLogin} onReset={clearFields}>
-                    <FormGroup validationState={userNameValidation}>
-                        <ControlLabel>UserName</ControlLabel>
-                        <FormControl autoFocus type="text" id="userName" value={userName} onChange={onTextChange} />
-                        <FormControl.Feedback />
-                    </FormGroup>
-                    <FormGroup validationState={passwordValidation}>
-                        <ControlLabel>Password</ControlLabel>
-                        <FormControl type="password" id="password" value={password} onChange={onTextChange} />
-                        <FormControl.Feedback />
-                    </FormGroup>
-                    {'  '}
-                    <Button type="submit"
-                        bsStyle="success"
-                        disabled={isSubmitDisabled(userNameValidation, passwordValidation)}>
-                        {(loading) ? 'Logging in' : 'Submit'}</Button>
-                    {'  '}
-                    <Button type="reset" bsStyle="danger">Reset</Button>
-                    {' '}
-                    {(errorMessage)
-                        && <HelpBlock style={{ display: 'inline', color: 'red' }}>{errorMessage}</HelpBlock>}
-                </Form>
+                <form onSubmit={processLogin} onReset={clearFields}>
+                    <FormField
+                        autoFocus
+                        tabIndex="1"
+                        id="userName"
+                        onChange={onTextChange}
+                        type="text"
+                        validationState={userNameValidation}
+                        value={userName}
+                        label="UserName"
+                        validationMessage={errorMessage} />
+                    <FormField
+                        tabIndex="2"
+                        id="password"
+                        onChange={onTextChange}
+                        type="password"
+                        validationState={passwordValidation}
+                        value={password}
+                        label="Password"
+                        validationMessage={errorMessage} />
+                    <ButtonToolbar>
+                        <SubmitButton
+                            tabIndex="3"
+                            label={(loading) ? 'Logging in' : 'Submit'}
+                            disabled={isSubmitDisabled(userNameValidation, passwordValidation)} />
+                        <ResetButton
+                            tabIndex="4"
+                            label="Reset"
+                            disabled={false} />
+                    </ButtonToolbar>
+                </form>
             </div>);
     }
 }
